@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAFAFA;
+  --foreground: #0f1617;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-dark: #0e243c;
+  --color-medium: #71549f;
+  --color-black: #0f1617;
+  --color-white: #ffffff;
+  --color-bg: #fafafa;
+  --color-disable: #eeeeee;
+  --color-green: #00cf72;
+  --color-orange: #ffbb1d;
+  --color-red: #ff112e;
+  --color-grey: #fbf8f8;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Global CSS rules for the specified text styles */
+
+/* h1 tag */
+h1 {
+  font-size: 20px;
+  line-height: 130%; /* 130% of 20px = 26px */
+  font-weight: 600; /* SemiBold typically corresponds to font-weight 600 */
+}
+
+/* Custom class for p1 */
+.p1 {
+  font-size: 16px;
+  line-height: 140%; /* 140% of 16px = 22.4px, rounded to 22px in the table */
+  font-weight: 400; /* Regular corresponds to font-weight 400 */
+}
+
+/* Custom class for p2 */
+.p2 {
+  font-size: 16px;
+  line-height: 140%; /* 140% of 16px = 22.4px, rounded to 22px */
+  font-weight: 600; /* SemiBold corresponds to font-weight 600 */
+}
+
+/* Custom class for p3 */
+.p3 {
+  font-size: 14px;
+  line-height: 140%; /* 140% of 14px = 19.6px, rounded to 19.6px */
+  font-weight: 400; /* Regular corresponds to font-weight 400 */
+}
+
+/* Custom class for p4 */
+.p4 {
+  font-size: 14px;
+  line-height: 140%; /* 140% of 14px = 19.6px, rounded to 19.6px */
+  font-weight: 600; /* SemiBold corresponds to font-weight 600 */
+}
+
+/* Custom class for p5 */
+.p5 {
+  font-size: 13px;
+  line-height: 140%; /* 140% of 13px = 18.2px, rounded to 18.2px */
+  font-weight: 500; /* Medium typically corresponds to font-weight 500 */
+}
+
+/* Custom class for p6 */
+.p6 {
+  font-size: 13px;
+  line-height: 140%; /* 140% of 13px = 18.2px, rounded to 18.2px */
+  font-weight: 400; /* Regular corresponds to font-weight 400 */
+}
+
+/* Custom class for p7 */
+.p7 {
+  font-size: 10px;
+  line-height: 140%; /* 140% of 10px = 14px */
+  font-weight: 400; /* Regular corresponds to font-weight 400 */
+}
