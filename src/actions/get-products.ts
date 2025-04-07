@@ -1,7 +1,6 @@
-import { cookies } from "next/headers";
+import { Product } from "@/types/product";
 
-
-const getProducts = async () => {
+const getProducts = async (page:number):Promise<Product[]> => {
     const userProducts = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/products`,
         {
@@ -9,9 +8,7 @@ const getProducts = async () => {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                Cookie: cookies().toString()
             },
-            cache: "force-cache"
         }
     );
 

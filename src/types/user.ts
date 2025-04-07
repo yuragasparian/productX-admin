@@ -5,3 +5,4 @@ export type User = {
     user_image: string;
 }
 
+export type PublicUser = Omit<User, "password">

@@ -1,12 +1,11 @@
-
-import getProducts from "./actions/get-products"
-
-const Home = async () => {
-  const products = await getProducts()
+import Dashboard from "@/components/dashboard";
+import React from "react";
+const Home = () => {
   return (
-    <p>{JSON.stringify(products)}</p>
-  )
-  
-}
+    <Dashboard>
+      <div>Home</div>
+    </Dashboard>
+  );
+};
 
-export default Home
+export default Home;

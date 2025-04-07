@@ -1,5 +1,5 @@
 "use client";
-import authUser from "../actions/auth";
+import authUser from "../../actions/auth";
 import { useForm } from "react-hook-form";
 import type { User } from "@/types/user";
 import { useState } from "react";
