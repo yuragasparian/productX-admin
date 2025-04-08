@@ -6,7 +6,7 @@ type Props = {
 
 const Dashboard = ({children}:Props) => {
   return (
-    <div>Dashboard
+    <div>
       <DashboardHeader />
       {children}
     </div>
