@@ -1,6 +1,6 @@
 import userStore from "@/store/user-store";
 import Image from "next/image";
-import Button from "../button";
+import Button from "@/components/button";
 
 const UsernameBlock = () => {
   const { user } = userStore();

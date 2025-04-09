@@ -4,7 +4,7 @@ import userStore from "@/store/user-store";
 import { useEffect } from "react";
 import UsernameBlock from './username-block';
 import FilterInput from './filter-input';
-import Button from "../button";
+import Button from "@/components/button";
 
 const DashboardHeader = () => {
   const { user, identifyUser } = userStore();

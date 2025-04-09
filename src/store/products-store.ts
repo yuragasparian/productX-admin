@@ -4,17 +4,16 @@ import  getProducts  from "@/actions/get-products";
 
 type ProductsStore = {
   products: Product[] | null;
-  page:number
   setProducts: (products: Product[]) => void;
-  fetchProducts: () => Promise<void>;
+  fetchProducts: (page:number) => Promise<void>;
 };
 
 const productsStore = create<ProductsStore>((set, get) => ({
   products: null,
-  page:1,
   setProducts: (products) => set({ products }),
   fetchProducts: async () => {
-    const products = await getProducts(get().page);
+    //page is defined in getProducts function
+    const products = await getProducts();
     set({ products:products.products });
   },
 }));

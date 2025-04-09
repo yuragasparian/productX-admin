@@ -12,8 +12,8 @@ const ProductsTableRow = ({ product }: Params) => {
   
   return (
     <tr className=" border-t border-gray-100">
-      {/* <td className="px-6 py-3">{product.product_image}</td> */}
-      <td className="px-6 py-3 text-center">
+      {/* <td className=" py-3">{product.product_image}</td> */}
+      <td className=" py-3 text-center">
         <div className="flex justify-center">
           <Image
             src={`${process.env.NEXT_PUBLIC_SERVER_URL}/sample-product.jpg`}
@@ -24,13 +24,13 @@ const ProductsTableRow = ({ product }: Params) => {
           />
         </div>
       </td>
-      <td className="px-6 py-3">{product.name}</td>
-      <td className="px-6 py-3">{product.sku}</td>
-      <td className="px-6 py-3">{product.category?.name}</td>
-      <td className="px-6 py-3">{product.price}$</td>
-      <td className="px-6 py-3">{product.stock_quantity}</td>
-      <td className="px-6 py-3">In Stock</td>
-      <td className="px-6 py-3">
+      <td className=" py-3 text-left">{product.name}</td>
+      <td className=" py-3">{product.sku}</td>
+      <td className=" py-3">{product.category?.name}</td>
+      <td className=" py-3">{product.price}$</td>
+      <td className=" py-3">{product.stock_quantity}</td>
+      <td className=" py-3">In Stock</td>
+      <td className=" py-3">
         <ProductModifiers />
       </td>
     </tr>

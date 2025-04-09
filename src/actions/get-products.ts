@@ -1,6 +1,8 @@
+import { productFilterStore } from "@/store/product-filter-store";
 import { ReqReturnType } from "@/types/product";
 
-const getProducts = async (page:number):Promise<ReqReturnType> => {
+const getProducts = async ():Promise<ReqReturnType> => {
+    const page = productFilterStore.getState().page
     const userProducts = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/products?page=${page}`,
         {
@@ -11,7 +13,6 @@ const getProducts = async (page:number):Promise<ReqReturnType> => {
             },
         }
     );
-
     return userProducts.json()
 }
 
