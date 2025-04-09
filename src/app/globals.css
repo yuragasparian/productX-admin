@@ -32,7 +32,7 @@ body {
 /* Global CSS rules for the specified text styles */
 
 /* h1 tag */
-h1 {
+.h1 {
   font-size: 20px;
   line-height: 130%; /* 130% of 20px = 26px */
   font-weight: 600; /* SemiBold typically corresponds to font-weight 600 */

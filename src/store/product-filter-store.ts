@@ -19,9 +19,9 @@ export const productFilterStore = create<ProductFilterStore>((set) => ({
         set({ statusId })
     },
     page: 1,
-    setPage(page) {
+    setPage: (page) => {
         set({ page })
         console.log(page);
-        
+
     }
 }))

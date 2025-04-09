@@ -8,7 +8,7 @@ const ProductsTableBody = () => {
   const { products, fetchProducts } = productsStore();
   useEffect(() => {
     if (!products) {
-      fetchProducts();
+      fetchProducts(1);
     }
   }, []);
 

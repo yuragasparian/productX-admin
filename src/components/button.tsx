@@ -22,8 +22,8 @@ const buttonVariants = cva(
         default: "p4 w-39 py-3 px-4",
         sm: "p4 w-36 py-3 px-4",
         lg: "h-11 px-8 rounded-md",
-        icon: "size-8 p-2 rounded-full text-xs",
-        pagination: "size-10.5 p-2 rounded-full text-xs"
+        icon: "size-8 p-2 rounded-full text-xs backdrop-blur-sm",
+        pagination: "size-10.5 p-2 rounded-full text-xs",
       },
     },
     defaultVariants: {

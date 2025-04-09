@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import ProductModifiers from "./product-modifiers";
 import { Product } from "@/types/product";
 import Image from "next/image";
@@ -7,9 +7,13 @@ type Params = {
   product: Product;
 };
 
+  //context for product buttons | avoiding prop-drilling
+export const ProductIdContext = createContext<number | null>(null);
+
 const ProductsTableRow = ({ product }: Params) => {
-  console.log(product);
-  
+
+
+
   return (
     <tr className=" border-t border-gray-100">
       {/* <td className=" py-3">{product.product_image}</td> */}
@@ -31,7 +35,9 @@ const ProductsTableRow = ({ product }: Params) => {
       <td className=" py-3">{product.stock_quantity}</td>
       <td className=" py-3">In Stock</td>
       <td className=" py-3">
-        <ProductModifiers />
+        <ProductIdContext.Provider value={product.id}>
+          <ProductModifiers  />
+        </ProductIdContext.Provider>
       </td>
     </tr>
   );
