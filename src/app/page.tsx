@@ -1,9 +1,10 @@
 import Dashboard from "@/components/dashboard";
 import React from "react";
+import ProductsTable from './../components/products-table/index';
 const Home = () => {
   return (
     <Dashboard>
-      <div></div>
+      <ProductsTable />
     </Dashboard>
   );
 };

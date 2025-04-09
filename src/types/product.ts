@@ -1,3 +1,8 @@
+type Category = {
+    id:number
+    name:string
+}
+
 export type Product = {
     name: string;
     id: number;
@@ -10,4 +15,10 @@ export type Product = {
     product_image: string;
     category_id: number;
     adder_id: number;
+    category?:Category
+}
+
+export type ReqReturnType = {
+    products: Product[], 
+    totalProducts: number
 }

@@ -6,7 +6,7 @@ type Props = {
 
 const Dashboard = ({children}:Props) => {
   return (
-    <div>
+    <div className='flex flex-col gap-4 p-4'>
       <DashboardHeader />
       {children}
     </div>

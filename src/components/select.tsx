@@ -53,7 +53,7 @@ export const Select = ({
       </Button>
 
       {open && (
-        <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl shadow-lg">
+        <div className="absolute bg-white z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl shadow-lg">
           {options.map((opt) => (
             <div
               key={opt.value}

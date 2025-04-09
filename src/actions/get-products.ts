@@ -1,8 +1,8 @@
-import { Product } from "@/types/product";
+import { ReqReturnType } from "@/types/product";
 
-const getProducts = async (page:number):Promise<Product[]> => {
+const getProducts = async (page:number):Promise<ReqReturnType> => {
     const userProducts = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/products`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/products?page=${page}`,
         {
             method: "GET",
             credentials: "include",
