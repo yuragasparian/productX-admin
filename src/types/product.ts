@@ -3,6 +3,13 @@ type Category = {
     name:string
 }
 
+export type ProductHistory = {
+    id: number;
+    product_id: number;
+    change_made: string;
+    change_time: Date;
+}
+
 export type Product = {
     name: string;
     id: number;
@@ -16,6 +23,7 @@ export type Product = {
     category_id: number;
     adder_id: number;
     category?:Category
+    history?:ProductHistory[]
 }
 
 export type ReqReturnType = {

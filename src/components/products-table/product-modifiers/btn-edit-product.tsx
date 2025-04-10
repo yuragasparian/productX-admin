@@ -4,9 +4,14 @@ import Image from "next/image";
 import React, { useContext } from "react";
 import { ProductIdContext } from "../products-table-row";
 
-const BtnEditProduct = () => {
+type Props = {
+  propSelectedProductId?:number
+}
 
-  const selectedProductId = useContext(ProductIdContext)
+const BtnEditProduct = ({propSelectedProductId}:Props) => {
+
+  //using props when called from Product information dialog
+  const selectedProductId = propSelectedProductId || useContext(ProductIdContext)
 
   if(!selectedProductId) return null
 

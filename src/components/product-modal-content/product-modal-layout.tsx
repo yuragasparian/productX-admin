@@ -5,6 +5,8 @@ import {
   ActiveProductModal,
 } from "@/store/product-modals-store";
 import X from "@/assets/icons/x";
+import BtnEditProduct from "../products-table/product-modifiers/btn-edit-product";
+import BtnRemoveProduct from "../products-table/product-modifiers/btn-remove-product";
 
 type Props = {
   children: React.JSX.Element;
@@ -17,8 +19,7 @@ const headlines: Record<NonNullable<ActiveProductModal>, string> = {
 };
 
 const ProductModalLayout = ({ children }: Props) => {
-  const setActiveProductModal =
-    productModalsStore.getState().setActiveProductModal;
+  const setActiveProductModal = productModalsStore.getState().setActiveProductModal;
   const activeProductModal = productModalsStore.getState().activeProductModal;
   return (
     activeProductModal && (
@@ -34,6 +35,7 @@ const ProductModalLayout = ({ children }: Props) => {
           </Button>
         </div>
         {children}
+
       </div>
     )
   );

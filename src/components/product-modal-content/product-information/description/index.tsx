@@ -1,7 +1,10 @@
 
-const ProductInfoDescription = () => {
+type Props = {
+  productDescription: string
+}
+const ProductInfoDescription = ({productDescription}:Props) => {
   return (
-    <div>ProductInfoDescription</div>
+    <p className="h-47 scrollbar-hide text-left overflow-y-scroll">{productDescription}</p>
   )
 }
 

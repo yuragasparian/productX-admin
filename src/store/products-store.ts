@@ -6,6 +6,7 @@ type ProductsStore = {
   products: Product[] | null;
   setProducts: (products: Product[]) => void;
   fetchProducts: (page:number) => Promise<void>;
+
 };
 
 const productsStore = create<ProductsStore>((set, get) => ({
@@ -16,6 +17,7 @@ const productsStore = create<ProductsStore>((set, get) => ({
     const products = await getProducts();
     set({ products:products.products });
   },
+
 }));
 
 export default productsStore;

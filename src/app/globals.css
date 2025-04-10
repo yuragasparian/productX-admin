@@ -86,3 +86,12 @@ body {
   line-height: 140%; /* 140% of 10px = 14px */
   font-weight: 400; /* Regular corresponds to font-weight 400 */
 }
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
