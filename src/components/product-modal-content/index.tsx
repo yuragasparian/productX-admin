@@ -5,10 +5,10 @@ import {
   productModalsStore,
   ActiveProductModal,
 } from "@/store/product-modals-store";
-import Dialogue from "../dialogue";
+import Dialogue from "../ui/dialogue";
 import ModalProductInformation from "./product-information";
-import ModalEditProduct from "./edit-product";
-import ModalNewProduct from "./new-product";
+import ModalEditProduct from "./product-input/edit-product";
+import ModalNewProduct from "./product-input/new-product";
 import ProductModalLayout from "./product-modal-layout";
 
 const productModals: Record<

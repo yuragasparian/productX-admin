@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 import ProductModifiers from "./product-modifiers";
 import { Product } from "@/types/product";
 import Image from "next/image";
-import  Badge  from '@/components/badge';
+import  Badge  from '@/components/ui/badge';
 
 type Params = {
   product: Product;
@@ -31,7 +31,7 @@ const ProductsTableRow = ({ product }: Params) => {
       </td>
       <td className=" py-3 text-left">{product.name}</td>
       <td className=" py-3">{product.sku}</td>
-      <td className=" py-3">{product.category?.name}</td>
+      <td className=" py-3">{product.category}</td>
       <td className=" py-3">{product.price}$</td>
       <td className=" py-3">{product.stock_quantity}</td>
       <td className=" py-3"><Badge quantity={product.stock_quantity} /></td>

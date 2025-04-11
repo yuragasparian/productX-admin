@@ -1,6 +1,3 @@
-import path from "path";
-import { SVGProps } from "react";
-
 const X = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="24"

@@ -1,12 +1,11 @@
 import React from "react";
-import Button from "@/components/button";
+import Button from "@/components/ui/button";
 import {
   productModalsStore,
   ActiveProductModal,
 } from "@/store/product-modals-store";
 import X from "@/assets/icons/x";
-import BtnEditProduct from "../products-table/product-modifiers/btn-edit-product";
-import BtnRemoveProduct from "../products-table/product-modifiers/btn-remove-product";
+
 
 type Props = {
   children: React.JSX.Element;

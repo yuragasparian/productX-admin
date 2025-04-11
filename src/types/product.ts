@@ -1,7 +1,4 @@
-type Category = {
-    id:number
-    name:string
-}
+
 
 export type ProductHistory = {
     id: number;
@@ -20,13 +17,28 @@ export type Product = {
     price: number;
     stock_quantity: number;
     product_image: string;
-    category_id: number;
     adder_id: number;
-    category?:Category
+    category:ProductCategory
     history?:ProductHistory[]
 }
+
 
 export type ReqReturnType = {
     products: Product[], 
     totalProducts: number
 }
+
+export enum ProductCategory {
+    Electronics = "Electronics",
+    Clothing = "Clothing",
+    Home_Appliances = "Home Appliances",
+    Books = "Books",
+    Beauty = "Beauty",
+    Sports = "Sports",
+    Food = "Food",
+    Furniture = "Furniture",
+    Toys = "Toys",
+    Automotive = "Automotive"
+  }
+  
+  export type ProductCategoryWithNone = ProductCategory | "";

@@ -2,6 +2,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import Button from "./button"
 import  Image  from 'next/image';
+import { ProductCategory } from "@/types/product";
 
 export interface SelectOption {
   label: string
@@ -11,7 +12,7 @@ export interface SelectOption {
 export interface CustomSelectProps {
   options: SelectOption[]
   value: string
-  onChange: (value: string) => void
+  onChange: (value: any) => void
   placeholder?: string
   className?: string
 }
@@ -41,6 +42,7 @@ export const Select = ({
   return (
     <div className={cn("relative w-full", className)} ref={selectRef}>
       <Button
+      type="button"
         onClick={() => setOpen((prev) => !prev)}
         className={cn(
             "w-full justify-between",

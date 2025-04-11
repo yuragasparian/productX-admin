@@ -1,4 +1,4 @@
-import Button from "@/components/button";
+import Button from "@/components/ui/button";
 import { productModalsStore } from "@/store/product-modals-store";
 import Image from "next/image";
 import React, { useContext } from "react";

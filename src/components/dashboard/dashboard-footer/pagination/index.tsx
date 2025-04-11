@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/button";
+import Button from "@/components/ui/button";
 import { productFilterStore } from "@/store/product-filter-store";
 import Image from "next/image";
 

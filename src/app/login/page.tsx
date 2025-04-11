@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import type { User } from "@/types/user";
 import { useState } from "react";
 import { MessageResponse } from "@/types/response";
-import Dialogue from "@/components/dialogue";
+import Dialogue from "@/components/ui/dialogue";
 import { redirect } from 'next/navigation'
 
 const Login = () => {

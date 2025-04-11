@@ -1,5 +1,5 @@
-import { Input } from "@/components/input";
-import { Select } from "@/components/select";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
 import { productFilterStore } from "@/store/product-filter-store";
 
 const FilterInput = () => {

@@ -1,4 +1,4 @@
-import Badge from "@/components/badge";
+import Badge from "@/components/ui/badge";
 import { productModalsStore } from "@/store/product-modals-store";
 import { Product } from "@/types/product";
 import Image from "next/image";
@@ -13,7 +13,7 @@ const ProductInfoDetails = ({product}:Props) => {
   const productDetails = [
     { label: "Name", value: product.name },
     { label: "SKU", value: product.sku },
-    { label: "Category", value: product.category?.name },
+    { label: "Category", value: product.category },
     { label: "Price", value: product.price },
     { label: "Stock Quantity", value: product.stock_quantity },
     { label: "Status", value: <Badge quantity={product.stock_quantity} /> },

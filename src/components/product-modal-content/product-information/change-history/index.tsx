@@ -7,7 +7,7 @@ type Props = {
 };
 
 const ProductInfoChangeHistory = ({ history }: Props) => {
-  if (!history || history.length === 0) return <p>No change history</p>;
+  if (!history || history.length === 0) return  <div className="h-61">No change history</div>
 
   const historySorted = history.sort((a, b) => {
     const dateA = new Date(a.change_time);
