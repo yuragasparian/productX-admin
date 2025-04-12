@@ -24,7 +24,7 @@ const BaseProductInput = ({
   product,
 }: Props) => {
   const [editStep, setEditStep] = useState<"details" | "description">("details");
-  const [previewImage, setPreviewImage] = useState<string | undefined>(product?.product_image);
+  const [previewImage, setPreviewImage] = useState<File | undefined>();
 
   const handleNextClick = () => {
     if (editStep === "details") {

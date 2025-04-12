@@ -2,7 +2,6 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import Button from "./button"
 import  Image  from 'next/image';
-import { ProductCategory } from "@/types/product";
 
 export interface SelectOption {
   label: string
@@ -17,7 +16,7 @@ export interface CustomSelectProps {
   className?: string
 }
 
-export const Select = ({
+const Select = ({
   options,
   value,
   onChange,
@@ -76,3 +75,5 @@ export const Select = ({
     </div>
   )
 }
+
+export {Select}

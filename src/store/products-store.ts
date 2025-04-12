@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { Product } from "@/types/product";
-import  getProducts  from "@/actions/get-products";
+import  getProducts  from "@/actions/products/get-products";
 
 type ProductsStore = {
   products: Product[] | null;

@@ -1,9 +1,20 @@
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { productFilterStore } from "@/store/product-filter-store";
+import { useCallback, ChangeEvent } from "react";
 
 const FilterInput = () => {
-  const { statusId, setStatusId, searchQuery, setSearchQuery } = productFilterStore();
+  const searchQuery = productFilterStore((state) => state.searchQuery);
+  const setSearchQuery = productFilterStore((state) => state.setSearchQuery);
+  const statusId = productFilterStore((state) => state.statusId);
+  const setStatusId = productFilterStore((state) => state.setStatusId);
+
+  const handleSearchChange = useCallback(
+  (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  },
+  [setSearchQuery]
+);
 
   return (
     <div className="flex gap-3">
@@ -12,7 +23,7 @@ const FilterInput = () => {
         className="w-72"
         rightIcon="icons/search.svg"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={handleSearchChange}
       />
       <Select
         value={statusId}

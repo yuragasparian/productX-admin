@@ -5,16 +5,21 @@ import { Select } from "../../ui/select";
 import { ProductFormValues } from "@/types/forms";
 import { useForm, UseFormRegister } from "react-hook-form";
 import ImageInputIcon from "./image-input-icon";
-
+import path from "path";
 
 type Props = {
   product?: Partial<Product>;
   register: UseFormRegister<ProductFormValues>;
   category?: ProductCategory | "";
   setCategory: React.Dispatch<React.SetStateAction<ProductCategory | "">>;
-  previewImage: string | undefined
-  setPreviewImage: React.Dispatch<React.SetStateAction<string | undefined>>
+  previewImage: File | undefined;
+  setPreviewImage: React.Dispatch<React.SetStateAction<File | undefined>>;
 };
+
+  const categoryOptions = Object.keys(ProductCategory).map((key) => ({
+    label: ProductCategory[key as keyof typeof ProductCategory],
+    value: key,
+  }));
 
 const InputProductDetails = ({
   product,
@@ -22,12 +27,9 @@ const InputProductDetails = ({
   category,
   setCategory,
   previewImage,
-  setPreviewImage
+  setPreviewImage,
 }: Props) => {
-  const categoryOptions = Object.keys(ProductCategory).map((key) => ({
-    label: ProductCategory[key as keyof typeof ProductCategory],
-    value: key,
-  }));
+
   
 
   return (
@@ -38,16 +40,18 @@ const InputProductDetails = ({
           className="size-67 bg-cover bg-center cursor-pointer text-transparent"
           type="file"
           style={{
-            backgroundImage: previewImage ? `url(${previewImage})` : "none",
+            backgroundImage: previewImage
+              ? `url(${URL.createObjectURL(previewImage)})`
+              : "none",
           }}
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
-              setPreviewImage(URL.createObjectURL(file));
+              setPreviewImage(file);
             }
           }}
         />
-        <ImageInputIcon imageExists={previewImage!==null}/>
+        <ImageInputIcon imageExists={previewImage !== null} />
       </div>
       <div className="flex flex-col justify-between">
         <Input {...register("name")} placeholder="Name" />

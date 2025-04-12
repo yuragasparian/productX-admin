@@ -49,3 +49,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 export default Button
+Button.displayName = "Button"
