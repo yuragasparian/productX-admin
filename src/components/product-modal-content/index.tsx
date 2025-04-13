@@ -1,27 +1,27 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import {
   productModalsStore,
   ActiveProductModal,
 } from "@/store/product-modals-store";
 import Dialogue from "../ui/dialogue";
 import ModalProductInformation from "./product-information";
-import ModalEditProduct from "./product-input/edit-product";
-import ModalNewProduct from "./product-input/new-product";
 import ProductModalLayout from "./product-modal-layout";
+import ProductInput from "./product-input";
 
 const productModals: Record<
   NonNullable<ActiveProductModal>,
   React.JSX.Element
 > = {
   product_info: <ModalProductInformation />,
-  edit_product: <ModalEditProduct />,
-  new_product: <ModalNewProduct />,
+  edit_product: <ProductInput />,
+  new_product: <ProductInput />,
 };
 
-const ProductModal = () => {
+const ProductModal = React.memo(() => {
   const activeModal = productModalsStore((state) => state.activeProductModal);
+  
   return (
     activeModal && (
       <Dialogue size="large">
@@ -29,6 +29,6 @@ const ProductModal = () => {
       </Dialogue>
     )
   );
-};
+})
 
 export default ProductModal;

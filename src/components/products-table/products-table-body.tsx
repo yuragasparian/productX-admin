@@ -13,6 +13,8 @@ const ProductsTableBody = () => {
       fetchProducts(1);
     }
   }, []);
+  
+  
 
   return (
     products && (

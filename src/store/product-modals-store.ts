@@ -10,7 +10,7 @@ type ProductModalsStore = {
 
     //the product id which the modal is opened for
     modalProductId: number | null
-    setModalProductId(productId: number): void
+    setModalProductId(productId: number | null): void
 
     getSelectedProduct: () => Product | null
 }
