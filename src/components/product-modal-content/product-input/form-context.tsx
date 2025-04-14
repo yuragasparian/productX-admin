@@ -1,22 +1,19 @@
+import fileFromUrl from "@/lib/file-from-url";
 import { productModalsStore } from "@/store/product-modals-store";
 import { ProductCategory } from "@/types/product";
-import React, { Dispatch, SetStateAction, useEffect, useMemo } from "react";
+import { log } from "console";
+import React from "react";
 import { createContext, useContext, useState, ReactNode } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 
 type ContextType = {
   editStep: "details" | "description";
   setEditStep: React.Dispatch<React.SetStateAction<"details" | "description">>;
 
   register: any;
-
-  category: ProductCategory | undefined;
-  setCategory: React.Dispatch<
-    React.SetStateAction<ProductCategory | undefined>
-  >;
-
-  previewImage: File | undefined
-  setPreviewImage: React.Dispatch<React.SetStateAction<File | undefined>>
+  control:any
+  watch: any
 };
 export const ProductContext = createContext<ContextType | null>(null);
 
@@ -29,8 +26,9 @@ export const FormContextProvider = ({ children }: { children: ReactNode }) => {
     state.getSelectedProduct()
   );
 
-  const { register } = useForm({
+  const { register, handleSubmit, control, watch } = useForm({
     defaultValues: {
+      image: null,
       name: selectedProduct?.name,
       sku: selectedProduct?.sku,
       category: selectedProduct?.category,
@@ -38,19 +36,13 @@ export const FormContextProvider = ({ children }: { children: ReactNode }) => {
       quantity: selectedProduct?.stock_quantity,
       description: selectedProduct?.description,
     },
-  });
-
-  const [category, setCategory] = useState<ProductCategory | undefined>(
-    selectedProduct?.category
-  );
-
-  const [previewImage, setPreviewImage] = useState<File | undefined>();
-
+  });  
+  const onSubmit: SubmitHandler<typeof register> = (data) => console.log(data)
 
 
   return (
     <ProductContext.Provider
-      value={{ editStep, setEditStep, register, category, setCategory, previewImage, setPreviewImage }}
+      value={{ editStep, setEditStep, register, control, watch }}
     >
       {children}
     </ProductContext.Provider>

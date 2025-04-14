@@ -3,7 +3,7 @@ import React from "react";
 import { useProductContext } from "@/components/product-modal-content/product-input/form-context";
 
 const SaveButton = () => {
-    const { editStep, setEditStep } = useProductContext();
+    const { editStep, setEditStep,  } = useProductContext();
 
   const handleNextClick = () => {
     if (editStep === "details") {

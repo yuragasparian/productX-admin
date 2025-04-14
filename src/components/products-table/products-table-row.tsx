@@ -1,15 +1,14 @@
 import React, { createContext } from "react";
-import ProductModifiers from "./product-modifiers";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import  Badge  from '@/components/ui/badge';
+import BtnProductInfo from "./product-modifiers/btn-product-info";
+import BtnEditProduct from "./product-modifiers/btn-edit-product";
+import BtnRemoveProduct from "./product-modifiers/btn-remove-product";
 
 type Params = {
   product: Product;
 };
-
-  //context for product buttons | avoiding prop-drilling
-export const ProductIdContext = createContext<number | null>(null);
 
 const ProductsTableRow = ({ product }: Params) => {
 
@@ -21,8 +20,8 @@ const ProductsTableRow = ({ product }: Params) => {
       <td className=" py-3 text-center">
         <div className="flex justify-center">
           <Image
-            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/sample-product.jpg`}
-            alt="image"
+            src={`${product.product_image}`}
+            alt={product.name}
             width={64}
             height={64}
             className="object-cover rounded-xl"
@@ -36,9 +35,11 @@ const ProductsTableRow = ({ product }: Params) => {
       <td className=" py-3">{product.stock_quantity}</td>
       <td className=" py-3"><Badge quantity={product.stock_quantity} /></td>
       <td className=" py-3">
-        <ProductIdContext.Provider value={product.id}>
-          <ProductModifiers  />
-        </ProductIdContext.Provider>
+      <div className="flex gap-2 justify-center">
+      <BtnProductInfo selectedProductId={product.id}/>
+      <BtnEditProduct selectedProductId={product.id}/>
+      <BtnRemoveProduct selectedProductId={product.id}/>
+    </div>
       </td>
     </tr>
   );

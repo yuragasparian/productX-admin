@@ -6,7 +6,6 @@ import {
 } from "@/store/product-modals-store";
 import X from "@/assets/icons/x";
 
-
 type Props = {
   children: React.JSX.Element;
 };
@@ -40,7 +39,6 @@ const ProductModalLayout = ({ children }: Props) => {
           </Button>
         </div>
         {children}
-
       </div>
     )
   );

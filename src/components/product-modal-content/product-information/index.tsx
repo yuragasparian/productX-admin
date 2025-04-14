@@ -12,8 +12,7 @@ const ModalProductInformation = () => {
   const [activeInfoTab, setActiveInfoTab] =
     useState<keyof typeof tabsContent>("details");
 
-  const getSelectedProduct = productModalsStore.getState().getSelectedProduct;
-  const product = getSelectedProduct();
+  const product = productModalsStore.getState().getSelectedProduct();
 
   if(!product) return null
 
@@ -22,8 +21,6 @@ const ModalProductInformation = () => {
     description: <ProductInfoDescription productDescription={product.description}/>,
     history: <ProductInfoChangeHistory history={product.history}/>,
   };
-
-  if (!product) return null;
 
   return (
     <>
@@ -35,8 +32,8 @@ const ModalProductInformation = () => {
 
       {activeInfoTab !== "history" &&
         <div className="flex justify-end items-center gap-2">
-        <BtnEditProduct propSelectedProductId={product.id} />
-        <BtnRemoveProduct />
+        <BtnEditProduct selectedProductId={product.id} />
+        <BtnRemoveProduct selectedProductId={product.id}/>
       </div>}
     </>
   );

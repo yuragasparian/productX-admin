@@ -2,18 +2,12 @@ import Button from "@/components/ui/button";
 import { productModalsStore } from "@/store/product-modals-store";
 import Image from "next/image";
 import React, { useContext } from "react";
-import { ProductIdContext } from "../products-table-row";
 
 type Props = {
-  propSelectedProductId?:number
+  selectedProductId:number
 }
 
-const BtnEditProduct = ({propSelectedProductId}:Props) => {
-
-  //using props when called from Product information dialog
-  const selectedProductId = propSelectedProductId || useContext(ProductIdContext)
-
-  if(!selectedProductId) return null
+const BtnEditProduct = ({selectedProductId}:Props) => {
 
   const setActiveProductModal = productModalsStore.getState().setActiveProductModal;
   const setModalProductId = productModalsStore.getState().setModalProductId;
