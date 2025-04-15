@@ -1,48 +1,42 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Input } from "@/components/ui/input";
 import ImageInputIcon from "./image-input-icon";
-import { useProductContext } from "./form-context";
 import { useImagePreview } from "@/hooks/use-image-preview";
 import { productModalsStore } from "@/store/product-modals-store";
-import image from "next/image";
+import { useFormContext } from "react-hook-form";
+import InputError from "@/components/ui/input-error";
 
 const ImageUpload = () => {
-  const { register, watch } = useProductContext();
+  const {
+    register,
+    watch,
+    formState: { errors },
+    setValue
+  } = useFormContext();
 
   const currentImageUrl = productModalsStore
     .getState()
     .getSelectedProduct()?.product_image;
 
-    const image = watch("image")?.[0];
-    const imagePreview = useImagePreview(image);
-    const previewImageUrl = imagePreview || currentImageUrl;
-  
-
-  // const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (file) {
-  //     await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/upload`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": file.type,
-  //       },
-  //       body: file,
-  //     });
-  //   }
-  // };
+  const image = watch("product_image")?.[0];
+  const imagePreview = useImagePreview(image);
+  const previewImageUrl = imagePreview || currentImageUrl;
 
   return (
     <div className="relative">
       <Input
-        {...register("image")}
+        {...register("product_image")}
         className="size-67 bg-cover bg-center cursor-pointer text-transparent"
         type="file"
+        multiple={false}
         style={{
           backgroundImage: previewImageUrl ? `url(${previewImageUrl})` : `none`,
         }}
-        // onChange={handleImageChange}
       />
       <ImageInputIcon imageExists={!!previewImageUrl} />
+      {errors.product_image?.message && (
+        <InputError>{errors.product_image?.message}</InputError>
+      )}
     </div>
   );
 };

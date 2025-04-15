@@ -1,20 +1,22 @@
 import Button from "@/components/ui/button";
 import React from "react";
-import { useProductContext } from "@/components/product-modal-content/product-input/form-context";
+import { useFormContext } from "react-hook-form";
 
-const SaveButton = () => {
-    const { editStep, setEditStep,  } = useProductContext();
+type Props = {
+  editStep: "details" | "description";
+  setEditStep: React.Dispatch<React.SetStateAction<"details" | "description">>;
+};
 
-  const handleNextClick = () => {
-    if (editStep === "details") {
-      setEditStep("description");
-    } else {
-      console.log("Form submited");
-    }
-  };
+const SaveButton = ({ editStep, setEditStep }: Props) => {
+
 
   return (
-    <Button variant="secondary" className="w-full" onClick={handleNextClick}>
+    <Button
+      form="product-form"
+      variant="secondary"
+      className="w-full"
+      // onClick={handleNextClick}
+    >
       {editStep === "details" ? "Next" : "Save"}
     </Button>
   );

@@ -1,9 +1,9 @@
 export type ProductFormValues = {
-  image: File
+  product_image: any
   name: string;
   sku: number;
   category: string
   price: number;
-  quantity: number;
+  stock_quantity: number;
   description: string;
 };
