@@ -9,12 +9,12 @@ import { productModalsStore } from "@/store/product-modals-store";
 import React from "react";
 
 const DashboardHeader = () => {
-  const { user, identifyUser } = userStore();
+  const { user, getUserData } = userStore();
   const setActiveProductModal = productModalsStore.getState().setActiveProductModal;
 
   useEffect(() => {
-    identifyUser();
-  }, [identifyUser]);
+    getUserData();
+  }, [getUserData]);
   
   return (
     user && (

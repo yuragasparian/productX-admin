@@ -18,7 +18,7 @@ export type Product = {
     stock_quantity: number;
     product_image: string;
     adder_id: number;
-    category:ProductCategory
+    category:keyof typeof ProductCategory
     history?:ProductHistory[]
 }
 

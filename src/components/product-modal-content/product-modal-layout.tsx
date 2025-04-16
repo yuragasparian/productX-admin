@@ -17,14 +17,11 @@ const headlines: Record<NonNullable<ActiveProductModal>, string> = {
 };
 
 const ProductModalLayout = ({ children }: Props) => {
-  const setActiveProductModal = productModalsStore.getState().setActiveProductModal;
   const activeProductModal = productModalsStore.getState().activeProductModal;
-  const setModalProductId = productModalsStore.getState().setModalProductId;
+  const closeProductModal = productModalsStore((state) =>
+    state.closeProductModal
+  );
 
-  const handleModalClose = () => {
-    setActiveProductModal(null);
-    setModalProductId(null)
-  }
   return (
     activeProductModal && (
       <div className="flex flex-col gap-6">
@@ -33,7 +30,7 @@ const ProductModalLayout = ({ children }: Props) => {
           <Button
             size={"icon"}
             className="size-6.5"
-            onClick={handleModalClose}
+            onClick={closeProductModal}
           >
             <X />
           </Button>

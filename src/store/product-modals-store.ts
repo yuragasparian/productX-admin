@@ -13,6 +13,8 @@ type ProductModalsStore = {
     setModalProductId(productId: number | null): void
 
     getSelectedProduct: () => Product | null
+
+    closeProductModal: () => void
 }
 
 export const productModalsStore = create<ProductModalsStore>((set, get) => ({
@@ -30,5 +32,12 @@ export const productModalsStore = create<ProductModalsStore>((set, get) => ({
         const productId = get().modalProductId
         const product = productsStore.getState().products?.find((p) => p.id === productId)
         return product ?? null;
-      }
+    },
+
+    closeProductModal: () => {
+        set({
+            activeProductModal: null,
+            modalProductId: null
+        })
+    }
 }))

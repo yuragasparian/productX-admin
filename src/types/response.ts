@@ -4,4 +4,5 @@ export type MessageResponse = {
     success:boolean,
     message:string,
     userData?:User
+    token?:string
 }

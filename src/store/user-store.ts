@@ -1,21 +1,25 @@
 import { create } from "zustand";
 import type { PublicUser } from '@/types/user';
-import identifyUser from "@/actions/identify-user";
+import getUserInfo from "@/actions/get-user-info";
 
 
 type UserStore = {
     user: PublicUser | null,
     setUser: (user: PublicUser) => void
-    identifyUser: () => Promise<void>
+    getUserData: () => Promise<void>
+    // token: string | null
+    // setToken: (token: string) => void
 }
 
 const userStore = create<UserStore>((set) => ({
     user: null,
     setUser: (user) => set({ user }),
-    identifyUser: async () => {
-        const user = await identifyUser()
+    getUserData: async () => {
+        const user = await getUserInfo()
         set({ user })
-    }
+    },
+    // token: null,
+    // setToken: (token) => set({ token })
 }))
 
 export default userStore

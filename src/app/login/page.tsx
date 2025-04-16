@@ -14,6 +14,10 @@ const Login = () => {
   const onSubmit = async (data: User) => {
     const res: MessageResponse = await authUser(data);
     if(res.success) {
+      const  token  = res.token
+      if(token) {
+        localStorage.setItem("token", token);
+      }
       redirect("/")
     }
     setMessage(res.message);

@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { Product } from "@/types/product";
+import { Product, ProductCategory } from "@/types/product";
 import Image from "next/image";
 import  Badge  from '@/components/ui/badge';
 import BtnProductInfo from "./product-modifiers/btn-product-info";
@@ -13,7 +13,6 @@ type Params = {
 const ProductsTableRow = ({ product }: Params) => {
 
 
-
   return (
     <tr className=" border-t border-gray-100">
       {/* <td className=" py-3">{product.product_image}</td> */}
@@ -24,13 +23,13 @@ const ProductsTableRow = ({ product }: Params) => {
             alt={product.name}
             width={64}
             height={64}
-            className="object-cover rounded-xl"
+            className="size-16 object-cover object-center rounded-xl "
           />
         </div>
       </td>
       <td className=" py-3 text-left">{product.name}</td>
       <td className=" py-3">{product.sku}</td>
-      <td className=" py-3">{product.category}</td>
+      <td className=" py-3">{ProductCategory[product.category]}</td>
       <td className=" py-3">{product.price}$</td>
       <td className=" py-3">{product.stock_quantity}</td>
       <td className=" py-3"><Badge quantity={product.stock_quantity} /></td>

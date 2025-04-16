@@ -4,11 +4,10 @@ import SaveButton from "./save-button";
 import React, { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { productModalsStore } from "@/store/product-modals-store";
-import { log } from "console";
-import { register } from "module";
-import { type } from "os";
-import addProduct from "@/actions/products/add-product";
 import { Product } from "@/types/product";
+import addProduct from "@/actions/products/add-product";
+import editProduct from "@/actions/products/edit-product";
+import PopupAlert from "@/components/ui/popup-alert";
 
 const ProductInput = () => {
   const [editStep, setEditStep] = useState<"details" | "description">(
@@ -17,6 +16,9 @@ const ProductInput = () => {
 
   const selectedProduct = productModalsStore((state) =>
     state.getSelectedProduct()
+  );
+  const closeProductModal = productModalsStore(
+    (state) => state.closeProductModal
   );
 
   const methods = useForm<Partial<Product>>({
@@ -32,29 +34,39 @@ const ProductInput = () => {
     },
     mode: "onBlur",
   });
-  function getDirtyValues(dirtyFields: any, allValues: any) {
-    if (dirtyFields === true) return allValues;
-
-    const result: any = {};
-
-    for (const key in dirtyFields) {
-      if (dirtyFields[key] === true) {
-        result[key] = allValues[key];
-      } else if (typeof dirtyFields[key] === "object") {
-        result[key] = getDirtyValues(dirtyFields[key], allValues[key]);
-      }
-    }
-
-    return result;
-  }
 
   const onSubmit = async (data: any) => {
+    const dirtyFields = methods.formState.dirtyFields;
+    const getValues = methods.getValues();
     if (editStep === "description") {
-      const dirtyValues = getDirtyValues(
-        methods.formState.dirtyFields,
-        methods.getValues()
-      );
-      const res = await addProduct({ productData: dirtyValues });
+
+      //editing exciting one
+      if (selectedProduct) {
+        if (Object.entries(dirtyFields).length > 0) {
+          const res = await editProduct(
+            dirtyFields,
+            getValues,
+            selectedProduct.id
+          );
+          if (res.success) {
+            closeProductModal;
+          } else if (res.message) {
+            PopupAlert.show({ message: res.message });
+          }
+        } else {
+          PopupAlert.show({ message: "No changes made" });
+        }
+      }
+      
+      //adding a new product
+      else {
+        const res = await addProduct({ productData: getValues });
+        if (res.success) {
+          closeProductModal;
+        } else if (res.message) {
+          PopupAlert.show({ message: res.message });
+        }
+      }
     }
   };
 

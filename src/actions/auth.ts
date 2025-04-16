@@ -5,7 +5,6 @@ export default async function authUser(data: User) {
     `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
     {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
