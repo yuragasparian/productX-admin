@@ -26,7 +26,11 @@ const ProductDetails = () => {
       {errors.name?.message && <InputError>{errors.name.message}</InputError>}
 
       <Input
-        {...register("sku", { required: "SKU is required" })}
+        type="number"
+        {...register("sku", {
+          required: "SKU is required",
+          valueAsNumber: true,
+        })}
         placeholder="SKU"
       />
       {errors.sku?.message && <InputError>{errors.sku.message}</InputError>}
@@ -44,18 +48,20 @@ const ProductDetails = () => {
       )}
 
       <Input
+        type="number"
         {...register("price", {
           required: "Price is required",
+          valueAsNumber: true,
           min: { value: 1, message: "Price must be at least 1" },
         })}
         placeholder="Price"
       />
-      {errors.price?.message && (
-        <InputError>{errors.price.message}</InputError>
-      )}
+      {errors.price?.message && <InputError>{errors.price.message}</InputError>}
 
       <Input
+        type="number"
         {...register("stock_quantity", {
+          valueAsNumber: true,
           required: "Quantity is required",
           min: { value: 1, message: "Quantity must be at least 1" },
         })}
