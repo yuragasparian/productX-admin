@@ -1,6 +1,6 @@
 import Button from "@/components/ui/button";
 import { productModalsStore } from "@/store/product-modals-store";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
 export type Props = {
   editStep: "details" | "description"
@@ -9,14 +9,13 @@ export type Props = {
 
 const CancelButton = ({editStep, setEditStep}:Props) => {
 
-  const setActiveProductModal =
-    productModalsStore.getState().setActiveProductModal;
-  const setModalProductId = productModalsStore.getState().setModalProductId;
+  const closeProductModal = productModalsStore((state) =>
+    state.closeProductModal
+  );
 
   const handlePrevClick = () => {
     if (editStep === "details") {
-      setActiveProductModal(null);
-      setModalProductId(null);
+      closeProductModal()
     } else {
       setEditStep("details");
     }

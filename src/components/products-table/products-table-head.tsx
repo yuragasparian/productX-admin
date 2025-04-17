@@ -1,11 +1,6 @@
 import React from "react";
-import Button from "../ui/button";
+import DownloadCSVButton from "./csv-button";
 
-const CSVButton = (
-  <Button size={"sm"} variant={"secondary"}>
-    CSV
-  </Button>
-);
 
 const columns = [
   "Image",
@@ -15,7 +10,7 @@ const columns = [
   "Price",
   "Stock Quantity",
   "Status",
-  CSVButton,
+  <DownloadCSVButton />
 ];
 const ProductsTableHead = () => {
   return (

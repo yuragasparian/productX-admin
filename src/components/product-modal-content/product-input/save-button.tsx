@@ -15,7 +15,6 @@ const SaveButton = ({ editStep, setEditStep }: Props) => {
       form="product-form"
       variant="secondary"
       className="w-full"
-      // onClick={handleNextClick}
     >
       {editStep === "details" ? "Next" : "Save"}
     </Button>

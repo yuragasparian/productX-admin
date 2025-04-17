@@ -8,6 +8,7 @@ import { Product } from "@/types/product";
 import addProduct from "@/actions/products/add-product";
 import editProduct from "@/actions/products/edit-product";
 import PopupAlert from "@/components/ui/popup-alert";
+import productsStore from "@/store/products-store";
 
 const ProductInput = () => {
   const [editStep, setEditStep] = useState<"details" | "description">(
@@ -20,6 +21,7 @@ const ProductInput = () => {
   const closeProductModal = productModalsStore(
     (state) => state.closeProductModal
   );
+  const fetchProducts = productsStore((state) => state.fetchProducts);
 
   const methods = useForm<Partial<Product>>({
     defaultValues: {
@@ -39,7 +41,6 @@ const ProductInput = () => {
     const dirtyFields = methods.formState.dirtyFields;
     const getValues = methods.getValues();
     if (editStep === "description") {
-
       //editing exciting one
       if (selectedProduct) {
         if (Object.entries(dirtyFields).length > 0) {
@@ -49,7 +50,8 @@ const ProductInput = () => {
             selectedProduct.id
           );
           if (res.success) {
-            closeProductModal;
+            closeProductModal();
+            fetchProducts();
           } else if (res.message) {
             PopupAlert.show({ message: res.message });
           }
@@ -57,12 +59,13 @@ const ProductInput = () => {
           PopupAlert.show({ message: "No changes made" });
         }
       }
-      
+
       //adding a new product
       else {
         const res = await addProduct({ productData: getValues });
         if (res.success) {
-          closeProductModal;
+          closeProductModal();
+          fetchProducts();
         } else if (res.message) {
           PopupAlert.show({ message: res.message });
         }

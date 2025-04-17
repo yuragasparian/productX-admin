@@ -13,7 +13,7 @@ const ProductsTableBody = () => {
   useEffect(() => {
     fetchProducts();
   }, [page, query, status]);
-  
+
   return (
     products && (
       <tbody>

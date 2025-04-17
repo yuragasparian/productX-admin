@@ -37,7 +37,7 @@ const productsStore = create<ProductsStore>((set, get) => ({
     set({ page })
   },
 
-  totalProducts: 1,
+  totalProducts: 0,
   setTotalProducts: (totalProducts) => {
     set({ totalProducts })
   },

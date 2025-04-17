@@ -23,7 +23,7 @@ const ProductInfoDetails = ({product}:Props) => {
     <>
       <div className="flex gap-5">
         <Image
-          src={"/no-product-image.jpg"}
+          src={product.product_image || "/no-product-image.jpg"}
           alt={`${product.name} image`}
           width={188}
           height={188}

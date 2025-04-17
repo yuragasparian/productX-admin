@@ -6,7 +6,7 @@ type Params = {
     let label = "";
     let colorClass = "";
   
-    if (quantity > 10) {
+    if (quantity > 20) {
       label = "In Stock";
       colorClass = "bg-green";
     } else if (quantity > 0) {

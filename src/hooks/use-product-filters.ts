@@ -9,29 +9,30 @@ export type FormValues = {
 };
 
 export const useProductFilters = () => {
-  const form = useForm<FormValues>({
-    defaultValues: {
-      query: "",
-      status: "",
-    },
-  });
+  const form = useForm<FormValues>();
 
   const setQuery = productsStore((state) => state.setQuery);
   const setStatus = productsStore((state) => state.setStatus);
 
   useEffect(() => {
-    const debouncedFetch = debounce((query: string) => {
+    const debouncedQuery = debounce((query: string) => {
       setQuery(query);
     }, 1000);
 
     const subscription = form.watch((values) => {
-      values.query && debouncedFetch(values.query);
-      values.status && setStatus(values.status);
+
+      if (values.query || values.query === "") {
+        debouncedQuery(values.query);
+      }
+
+      if (values.status || values.status === "") {
+        setStatus(values.status);
+      }
     });
 
     return () => {
       subscription.unsubscribe();
-      debouncedFetch.cancel();
+      debouncedQuery.cancel();
     };
   }, [form.watch]);
 

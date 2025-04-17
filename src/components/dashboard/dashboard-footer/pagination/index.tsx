@@ -1,13 +1,12 @@
 "use client";
 
 import { usePagination } from "@/hooks/use-pagination";
-import ArrowButton from './arrow-button';
-import PageButton from './page-button';
+import ArrowButton from "./arrow-button";
+import PageButton from "./page-button";
 import productsStore from "@/store/products-store";
 
-
 export default function Pagination() {
-  const totalProducts = productsStore((state) => state.totalProducts)
+  const totalProducts = productsStore((state) => state.totalProducts);
   const pageCount = Math.ceil(totalProducts / 6);
 
   const {
