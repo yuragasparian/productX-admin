@@ -4,7 +4,7 @@ import Pagination from './pagination/index';
 const DashboardFooter = () => {
   return (
     <div>
-        <Pagination pageCount={9}/>
+        <Pagination/>
     </div>
   )
 }

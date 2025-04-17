@@ -2,10 +2,9 @@
 import authUser from "../../actions/auth";
 import { useForm } from "react-hook-form";
 import type { User } from "@/types/user";
-import { useState } from "react";
 import { MessageResponse } from "@/types/response";
 import Dialogue from "@/components/ui/dialogue";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import PopupAlert from "@/components/ui/popup-alert";
