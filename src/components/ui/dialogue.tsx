@@ -3,11 +3,12 @@ type Props = {
   children: React.ReactNode;
   closed?: boolean;
   onClose?: () => void;
-  size: "small" | "large";
+  size: "small" | "middle" | "large";
 };
 
 const sizeClassMap: Record<Props["size"], string> = {
   small: "w-[280px] min-h-[128px] p-4 pt-6 flex flex-col gap-6 items-center",
+  middle: "w-[400px] p-6 min-h-[282px]",
   large: "w-[600px] p-5",
 };
 

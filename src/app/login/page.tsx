@@ -5,39 +5,47 @@ import type { User } from "@/types/user";
 import { useState } from "react";
 import { MessageResponse } from "@/types/response";
 import Dialogue from "@/components/ui/dialogue";
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import Button from "@/components/ui/button";
+import PopupAlert from "@/components/ui/popup-alert";
 
 const Login = () => {
   const { register, handleSubmit } = useForm<User>();
-  const [message, setMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   const onSubmit = async (data: User) => {
     const res: MessageResponse = await authUser(data);
-    if(res.success) {
-      const  token  = res.token
-      if(token) {
-        localStorage.setItem("token", token);
-      }
-      redirect("/")
+
+    if (res.success) {
+      const token = res.token as string;
+      localStorage.setItem("token", token);
+      router.replace("/");
+    }else{
+      PopupAlert.show({message:res.message})
     }
-    setMessage(res.message);
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("username")} type="text" placeholder="Username" />
-        <input
-          {...register("password")}
-          type="password"
-          placeholder="Password"
-        />
-        <button type="submit">Submit</button>
+    <Dialogue size="middle">
+      <form
+        className="flex flex-col justify-center gap-6"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h2 className="text-3xl">Login</h2>
+        <div className="flex flex-col gap-3">
+          <Input {...register("username")} placeholder="Username" />
+          <Input
+            {...register("password")}
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <Button className="w-full" variant={"secondary"} type="submit">
+          Submit
+        </Button>
       </form>
-      <Dialogue size="small" closed={message == null} onClose={() => setMessage(null)}>
-        {message}
-      </Dialogue>
-    </>
+    </Dialogue>
   );
 };
 
