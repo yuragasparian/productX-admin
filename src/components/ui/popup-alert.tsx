@@ -14,8 +14,8 @@ type Props = {
 const PopupAlert = ({ message, onClose, onConfirm }: Props) => {
 
   const handleConfirm = () => {
-    onConfirm?.();
     onClose();
+    onConfirm?.();
   };
 
   return (

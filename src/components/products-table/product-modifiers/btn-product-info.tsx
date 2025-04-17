@@ -2,6 +2,7 @@ import Button from "@/components/ui/button";
 import { productModalsStore } from "@/store/product-modals-store";
 import Image from "next/image";
 import React, { useContext } from "react";
+import Icon from "@/components/ui/icon";
 
 type Props = {
   selectedProductId:number
@@ -19,7 +20,7 @@ const BtnProductInfo = ({selectedProductId}:Props) => {
 
   return (
     <Button size={"icon"} variant={"default"} onClick={handleClick}>
-      <Image width={16} height={16} src={"icons/info.svg"} alt={""}></Image>
+      <Icon name="info" />
     </Button>
   );
 };

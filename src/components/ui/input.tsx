@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Icon } from '@/components/ui/icon';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -23,7 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         />
         {rightIcon && (
           <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-            <Image width={16} height={16} src={rightIcon} alt="icon" />
+            <Icon name={rightIcon} />
           </div>
         )}
       </div>

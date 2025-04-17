@@ -4,7 +4,9 @@ import {
   productModalsStore,
   ActiveProductModal,
 } from "@/store/product-modals-store";
-import X from "@/assets/icons/x";
+import Icon from "../ui/icon";
+
+
 
 type Props = {
   children: React.JSX.Element;
@@ -32,7 +34,7 @@ const ProductModalLayout = ({ children }: Props) => {
             className="size-6.5"
             onClick={closeProductModal}
           >
-            <X />
+            <Icon name="x" />
           </Button>
         </div>
         {children}

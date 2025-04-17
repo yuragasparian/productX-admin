@@ -8,7 +8,6 @@ type Props = {
     productData: Partial<Product> | ProductFormValues
 }
 
-
 const addProduct = async ({ productData }: Props):Promise<MessageResponse> => {
     
     const productForm = formDataFromObject(productData)
@@ -16,7 +15,6 @@ const addProduct = async ({ productData }: Props):Promise<MessageResponse> => {
         productForm.append("image", productData.product_image[0]);
     }
     
-
     return fetchWithAuth(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/new`, {
         method: "POST",
         body: productForm

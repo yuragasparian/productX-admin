@@ -2,6 +2,7 @@ import { deleteProduct } from '@/actions/products/delete-product'
 import Button from '@/components/ui/button'
 import PopupAlert from '@/components/ui/popup-alert'
 import Image from 'next/image'
+import Icon from "@/components/ui/icon";
 
 type Props = {
   selectedProductId:number
@@ -16,7 +17,7 @@ const BtnRemoveProduct = ({selectedProductId}:Props) => {
   }
   return (
     <Button size={"icon"} variant={"default"} onClick={handleRemove}>
-    <Image width={16} height={16} src={"icons/delete.svg"} alt={""}></Image>
+    <Icon name='delete' />
   </Button>
   )
 }

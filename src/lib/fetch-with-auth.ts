@@ -1,5 +1,4 @@
-import { ok } from "assert";
-import { json } from "stream/consumers";
+import { redirect } from "next/navigation";
 
 type FetchOptions = {
   method?: string;
@@ -11,11 +10,12 @@ const fetchWithAuth = async <T>(
   url: string,
   options: FetchOptions = {}
 ): Promise<T> => {
+  
   const token = localStorage.getItem("token");
 
   if (!token) {
-    window.location.href = "/login";
-    return Promise.reject("No token found");
+    window.location.href = "/login"
+    throw new Error(`Unauthorized`);
   }
 
   const isFormData = options.body instanceof FormData;

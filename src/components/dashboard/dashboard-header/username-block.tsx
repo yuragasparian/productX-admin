@@ -1,21 +1,36 @@
 import userStore from "@/store/user-store";
 import Image from "next/image";
 import Button from "@/components/ui/button";
+import Icon from "@/components/ui/icon";
+import PopupAlert from "@/components/ui/popup-alert";
+import { redirect } from 'next/navigation'
 
 const UsernameBlock = () => {
   const { user } = userStore();
   if (!user) return null;
 
+  const onLogout = () => {
+    PopupAlert.show({message:"Do you want to logout?", onConfirm() {
+      localStorage.removeItem("token")
+      redirect("/login")
+    },})
+  }
+
   return (
-  <div className="flex justify-evenly rounded-[8px] items-center gap-3 bg-white py-2 px-4">
-    <Image className="object-cover rounded-full " width={32} height={32} src={user.user_image} alt="profile image" />
-    <span className="p4">{user.username}</span>
-    <Button size={"icon"} variant={"default"}>
-      <Image width={16} height={16} src={"icons/logout.svg"} alt={""} ></Image>
-    </Button>
-  </div>);
+    <div className="flex justify-evenly rounded-[8px] items-center gap-3 bg-white py-2 px-4">
+      <Image
+        className="object-cover rounded-full "
+        width={32}
+        height={32}
+        src={user.user_image}
+        alt="profile image"
+      />
+      <span className="p4">{user.username}</span>
+      <Button size={"icon"} variant={"default"} onClick={onLogout}>
+        <Icon name="logout" />
+      </Button>
+    </div>
+  );
 };
 
 export default UsernameBlock;
-
-

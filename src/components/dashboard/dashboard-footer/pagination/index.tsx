@@ -2,7 +2,7 @@
 
 import Button from "@/components/ui/button";
 import { productFilterStore } from "@/store/product-filter-store";
-import Image from "next/image";
+import Icon from "@/components/ui/icon";
 
 type Params = {
   pageCount: number;
@@ -23,7 +23,10 @@ export default function Pagination({ pageCount }: Params) {
     startPage = Math.max(1, pageCount - maxPagesToShow + 1);
   }
 
-  const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  const pageNumbers = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, i) => startPage + i
+  );
 
   const handlePageSelect = (pN: number) => {
     if (page !== pN) {
@@ -52,11 +55,9 @@ export default function Pagination({ pageCount }: Params) {
         onClick={() => handlePageSelect(page - 1)}
         disabled={page <= 1}
       >
-        <Image
-          src="/icons/arrow-left.svg"
-          alt="Prev"
-          width={18}
-          height={18}
+        <Icon
+          name="arrow-left"
+          size={18}
           className={page <= 1 ? "opacity-50 cursor-not-allowed" : ""}
         />
       </Button>
@@ -75,7 +76,7 @@ export default function Pagination({ pageCount }: Params) {
       {/* Ellipsis and Last Page Button (only if more than 5 pages) */}
       {endPage < pageCount && (
         <>
-          {endPage < pageCount-1 && <span>···</span>}
+          {endPage < pageCount - 1 && <span>···</span>}
           {renderPageButton(pageCount)}
         </>
       )}
@@ -87,11 +88,9 @@ export default function Pagination({ pageCount }: Params) {
         onClick={() => handlePageSelect(page + 1)}
         disabled={page >= pageCount}
       >
-        <Image
-          src="/icons/arrow-right.svg"
-          alt="Next"
-          width={18}
-          height={18}
+        <Icon
+          name="arrow-right"
+          size={18}
           className={page >= pageCount ? "opacity-50 cursor-not-allowed" : ""}
         />
       </Button>
