@@ -1,43 +1,43 @@
 import { create } from "zustand";
-import type { Product } from '@/types/product';
-import productsStore from "./products-store";
+import type { Product } from "@/types/product";
+import productStore from "./product-store";
 
-export type ActiveProductModal = "product_info" | "edit_product" | "new_product" | null
+export type ActiveProductModal = "product_info" | "edit_product" | "new_product" | null;
 
 type ProductModalsStore = {
-    activeProductModal: ActiveProductModal
-    setActiveProductModal(productModal: ActiveProductModal): void
+  activeProductModal: ActiveProductModal;
+  setActiveProductModal(productModal: ActiveProductModal): void;
 
-    //the product id which the modal is opened for
-    modalProductId: number | null
-    setModalProductId(productId: number | null): void
+  //the product id which the modal is opened for
+  modalProductId: number | null;
+  setModalProductId(productId: number | null): void;
 
-    getSelectedProduct: () => Product | null
+  getSelectedProduct: () => Product | null;
 
-    closeProductModal: () => void
-}
+  closeProductModal: () => void;
+};
 
 export const productModalsStore = create<ProductModalsStore>((set, get) => ({
-    activeProductModal: null,
-    setActiveProductModal: (productModal) => {
-        set({ activeProductModal: productModal })
-    },
+  activeProductModal: null,
+  setActiveProductModal: (productModal) => {
+    set({ activeProductModal: productModal });
+  },
 
-    modalProductId: null,
-    setModalProductId: (modalProductId) => {
-        set({ modalProductId })
-    },
+  modalProductId: null,
+  setModalProductId: (modalProductId) => {
+    set({ modalProductId });
+  },
 
-    getSelectedProduct: () => {
-        const productId = get().modalProductId
-        const product = productsStore.getState().products?.find((p) => p.id === productId)
-        return product ?? null;
-    },
+  getSelectedProduct: () => {
+    const productId = get().modalProductId;
+    const product = productStore.getState().products?.find((p) => p.id === productId);
+    return product ?? null;
+  },
 
-    closeProductModal: () => {
-        set({
-            activeProductModal: null,
-            modalProductId: null
-        })
-    }
-}))
+  closeProductModal: () => {
+    set({
+      activeProductModal: null,
+      modalProductId: null,
+    });
+  },
+}));

@@ -4,7 +4,7 @@ import PopupAlert from "@/components/ui/popup-alert";
 import Image from "next/image";
 import Icon from "@/components/ui/icon";
 import { productModalsStore } from "@/store/product-modals-store";
-import productsStore from "@/store/products-store";
+import productStore from "@/store/product-store";
 
 type Props = {
   selectedProductId: number;
@@ -12,10 +12,8 @@ type Props = {
 
 const BtnRemoveProduct = ({ selectedProductId }: Props) => {
   const modalProductId = productModalsStore((state) => state.modalProductId);
-  const closeProductModal = productModalsStore(
-    (state) => state.closeProductModal
-  );
-  const fetchProducts = productsStore((state) => state.fetchProducts);
+  const closeProductModal = productModalsStore((state) => state.closeProductModal);
+  const fetchProducts = productStore((state) => state.fetchProducts);
 
   const handleRemove = () => {
     PopupAlert.show({

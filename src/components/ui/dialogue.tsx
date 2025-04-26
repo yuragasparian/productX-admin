@@ -1,4 +1,3 @@
-
 type Props = {
   children: React.ReactNode;
   closed?: boolean;
@@ -12,7 +11,7 @@ const sizeClassMap: Record<Props["size"], string> = {
   large: "w-[600px] p-5",
 };
 
-const Dialogue = ({ closed, onClose, children, size }: Props) => {
+const Dialogue = ({ closed, children, size }: Props) => {
   if (closed) return null;
 
   const sizeClass = sizeClassMap[size];
@@ -20,7 +19,6 @@ const Dialogue = ({ closed, onClose, children, size }: Props) => {
   return (
     <div className="fixed inset-0 bg-black/5 flex items-center justify-center z-50">
       <div className={`bg-white rounded-2xl shadow-lg ${sizeClass} relative text-center`}>
-
         {children}
       </div>
     </div>
@@ -28,4 +26,3 @@ const Dialogue = ({ closed, onClose, children, size }: Props) => {
 };
 
 export default Dialogue;
-

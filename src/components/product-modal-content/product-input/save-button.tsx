@@ -8,14 +8,8 @@ type Props = {
 };
 
 const SaveButton = ({ editStep, setEditStep }: Props) => {
-
-
   return (
-    <Button
-      form="product-form"
-      variant="secondary"
-      className="w-full"
-    >
+    <Button form="product-form" variant="secondary" className="w-full">
       {editStep === "details" ? "Next" : "Save"}
     </Button>
   );

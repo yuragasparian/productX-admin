@@ -1,44 +1,43 @@
-
-
-export type ProductHistory = {
-    id: number;
-    product_id: number;
-    change_made: string;
-    change_time: Date;
-}
+import { User } from "./user";
 
 export type Product = {
-    name: string;
-    id: number;
-    add_date: Date;
-    last_modified_date: Date;
-    sku: number;
-    description: string;
-    price: number;
-    stock_quantity: number;
-    product_image: string;
-    adder_id: number;
-    category:keyof typeof ProductCategory
-    history?:ProductHistory[]
-}
+  id: number;
+  createdAt?: string;
+  name: string;
+  sku: number;
+  description: string;
+  price: number;
+  stockQuantity: number;
+  image: string;
+  category: ProductCategory;
+  creator?: User;
+  history?: ProductHistory[];
+};
 
+export type ProductHistory = {
+  id: number;
+  productId: number;
+  changeDescription: string;
+  changedAt: string;
+  product?: Product;
+};
 
-export type ReqReturnType = {
-    products: Product[], 
-    totalProducts: number
-}
+export type ProductFormFields = Pick<
+  Product,
+  "image" | "name" | "sku" | "category" | "price" | "stockQuantity" | "description"
+>;
 
 export enum ProductCategory {
-    Electronics = "Electronics",
-    Clothing = "Clothing",
-    Home_Appliances = "Home Appliances",
-    Books = "Books",
-    Beauty = "Beauty",
-    Sports = "Sports",
-    Food = "Food",
-    Furniture = "Furniture",
-    Toys = "Toys",
-    Automotive = "Automotive"
-  }
-  
-  export type ProductCategoryWithNone = ProductCategory | "";
+  Electronics = "Electronics",
+  Clothing = "Clothing",
+  HomeAppliances = "Home Appliances",
+  Books = "Books",
+  Beauty = "Beauty",
+  Sports = "Sports",
+  Food = "Food",
+  Furniture = "Furniture",
+  Toys = "Toys",
+  Automotive = "Automotive",
+}
+
+export type ProductCategoryWithNone = ProductCategory | "";

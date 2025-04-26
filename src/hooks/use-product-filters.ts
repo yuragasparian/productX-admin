@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import debounce from "lodash.debounce";
-import productsStore from "@/store/products-store";
+import productStore from "@/store/product-store";
 
 export type FormValues = {
   query: string;
@@ -11,8 +11,8 @@ export type FormValues = {
 export const useProductFilters = () => {
   const form = useForm<FormValues>();
 
-  const setQuery = productsStore((state) => state.setQuery);
-  const setStatus = productsStore((state) => state.setStatus);
+  const setQuery = productStore((state) => state.setQuery);
+  const setStatus = productStore((state) => state.setStatus);
 
   useEffect(() => {
     const debouncedQuery = debounce((query: string) => {
@@ -20,7 +20,6 @@ export const useProductFilters = () => {
     }, 1000);
 
     const subscription = form.watch((values) => {
-
       if (values.query || values.query === "") {
         debouncedQuery(values.query);
       }

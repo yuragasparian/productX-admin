@@ -3,20 +3,14 @@
 import { usePagination } from "@/hooks/use-pagination";
 import ArrowButton from "./arrow-button";
 import PageButton from "./page-button";
-import productsStore from "@/store/products-store";
+import productStore from "@/store/product-store";
 
 export default function Pagination() {
-  const totalProducts = productsStore((state) => state.totalProducts);
+  const totalProducts = productStore((state) => state.totalProducts);
   const pageCount = Math.ceil(totalProducts / 6);
 
-  const {
-    page,
-    pageNumbers,
-    showFirstPage,
-    showLastPage,
-    hasLeftEllipsis,
-    hasRightEllipsis,
-  } = usePagination(pageCount);
+  const { page, pageNumbers, showFirstPage, showLastPage, hasLeftEllipsis, hasRightEllipsis } =
+    usePagination(pageCount);
 
   return (
     <div className="flex justify-end items-center gap-2">

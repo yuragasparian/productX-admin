@@ -1,14 +1,14 @@
 import Button from "@/components/ui/button";
-import productsStore from "@/store/products-store";
+import productStore from "@/store/product-store";
 import React from "react";
 
 type Props = {
-    pageNumber:number
-}
+  pageNumber: number;
+};
 
-const PageButton = ({pageNumber}: Props) => {
-  const page = Number(productsStore((state) => state.page));
-  const setPage = productsStore((state) => state.setPage);
+const PageButton = ({ pageNumber }: Props) => {
+  const page = Number(productStore((state) => state.page));
+  const setPage = productStore((state) => state.setPage);
 
   const handlePageSelect = () => {
     if (page !== pageNumber) {
@@ -20,9 +20,7 @@ const PageButton = ({pageNumber}: Props) => {
     <Button
       variant={"ghost"}
       size={"pagination"}
-      className={
-        page === pageNumber ? "border border-medium hover:border-medium" : ""
-      }
+      className={page === pageNumber ? "border border-medium hover:border-medium" : ""}
       onClick={handlePageSelect}
     >
       {pageNumber}

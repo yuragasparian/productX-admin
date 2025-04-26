@@ -1,18 +1,13 @@
-"use client";
+import getProducts from "@/actions/products/get-products";
 import ProductsTableRow from "./products-table-row";
-import productsStore from "@/store/products-store";
+import productStore from "@/store/product-store";
 import { useEffect } from "react";
 
 const ProductsTableBody = () => {
-  const products = productsStore((state) => state.products);
-  const fetchProducts = productsStore((state) => state.fetchProducts);
-  const page = productsStore((state) => state.page);
-  const query = productsStore((state) => state.query);
-  const status = productsStore((state) => state.status);
-
+  const products = productStore((state) => state.products);
   useEffect(() => {
-    fetchProducts();
-  }, [page, query, status]);
+    getProducts();
+  }, []);
 
   return (
     products && (

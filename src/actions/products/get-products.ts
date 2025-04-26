@@ -1,23 +1,18 @@
-"use client"
-
+import PopupAlert from "@/components/ui/popup-alert";
 import fetchWithAuth from "@/lib/fetch-with-auth";
-import { ReqReturnType } from "@/types/product";
+import productStore from "@/store/product-store";
+import { ProductsGet } from "@/types/response";
 
-export type Params = {
-  page: string
-  query: string;
-  status: string;
-}
+const getProducts = async () => {
+  const { page, query, status, setProducts } = productStore.getState();
 
-const getProducts = async (params:Params): Promise<ReqReturnType> => {
+  const searchParams = new URLSearchParams({ page, query, status }).toString();
 
-  const cleanReqParams = Object.fromEntries(
-    Object.entries(params).filter(([_, v]) => v !== '')
-  );
-
-  const searchParams = new URLSearchParams(cleanReqParams).toString();
-
-  return fetchWithAuth<ReqReturnType>(`${process.env.NEXT_PUBLIC_SERVER_URL}/products?${searchParams}`);
+  const { meta, data } = await fetchWithAuth<ProductsGet>(`/products?${searchParams}`);
+  if (!data) {
+    return PopupAlert.show({ message: meta.error?.message });
+  }
+  setProducts(data?.items);
 };
 
 export default getProducts;

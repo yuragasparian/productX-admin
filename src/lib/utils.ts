@@ -1,9 +1,9 @@
-import { ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
-
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+import { env } from "./env";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function convertDateFormat(date: Date) {
@@ -18,5 +18,7 @@ export function convertDateFormat(date: Date) {
     hour12: false,
   });
 
-  return formattedDate
+  return formattedDate;
 }
+
+export const imagePath = (imageName: string) => `${env.SERVER_URL}/${imageName}`;

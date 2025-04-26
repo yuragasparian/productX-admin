@@ -1,16 +1,16 @@
 import Button from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
-import productsStore from "@/store/products-store";
+import productStore from "@/store/product-store";
 import React from "react";
 
 type Props = {
   direction: "left" | "right";
-  disabled: boolean
+  disabled: boolean;
 };
 
 const ArrowButton = ({ direction, disabled }: Props) => {
-  const page = Number(productsStore((state) => state.page));
-  const setPage = productsStore((state) => state.setPage);
+  const page = Number(productStore((state) => state.page));
+  const setPage = productStore((state) => state.setPage);
 
   const nextPage = String(page + 1);
   const prevPage = String(page - 1);

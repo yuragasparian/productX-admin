@@ -1,3 +1,6 @@
+import { Response } from "@/types/response";
+import userStore from "@/store/user-store";
+import { env } from "./env";
 
 type FetchOptions = {
   method?: string;
@@ -6,35 +9,33 @@ type FetchOptions = {
 };
 
 const fetchWithAuth = async <T>(
-  url: string,
-  options: FetchOptions = {}
-): Promise<T> => {
-  
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    window.location.href = "/login"
-    throw new Error(`Unauthorized`);
-  }
-
+  endpoint: string,
+  options: FetchOptions = {},
+): Promise<Response<T>> => {
+  const token = userStore.getState().token;
   const isFormData = options.body instanceof FormData;
 
   const headers: Record<string, string> = {
-    "Authorization": `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
     ...options.headers,
-    ...(isFormData ? {} : { "Content-Type": "application/json" }), // Only add if not FormData
+    ...(isFormData ? {} : { "Content-Type": "application/json" }),
   };
 
-  const response = await fetch(url, {
-    ...options,
-    headers,
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+  try {
+    const response = await fetch(env.SERVER_URL + endpoint, { ...options, headers });
+    return await response.json();
+  } catch {
+    return {
+      meta: {
+        status: 400,
+        error: {
+          code: 4000,
+          message: "Unexpected client-side error",
+        },
+      },
+      data: null,
+    };
   }
-
-  return response.json() as Promise<T>;
 };
 
-export default fetchWithAuth
+export default fetchWithAuth;

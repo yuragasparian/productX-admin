@@ -1,15 +1,15 @@
-import React from 'react'
-import Pagination from './pagination/index';
-import productsStore from '@/store/products-store';
+import React from "react";
+import Pagination from "./pagination/index";
+import productStore from "@/store/product-store";
 
 const DashboardFooter = () => {
-  const totalProducts = productsStore((state) => state.totalProducts);
-  if(totalProducts < 6) return null
+  const totalProducts = productStore((state) => state.totalProducts);
+  if (totalProducts < 6) return null;
   return (
     <div>
-        <Pagination/>
+      <Pagination />
     </div>
-  )
-}
+  );
+};
 
-export default DashboardFooter
+export default DashboardFooter;

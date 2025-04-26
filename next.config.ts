@@ -1,21 +1,21 @@
+import { env } from "@/lib/env";
 import type { NextConfig } from "next";
 
+const imageBase = new URL(env.SERVER_URL);
+const protocol = imageBase.protocol === "https:" ? "https" : "http";
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-
-const nextConfig:NextConfig = {
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '3030',
-        pathname: '/**',
-        search: '',
+        protocol,
+        hostname: imageBase.hostname,
+        port: imageBase.port || "",
+        pathname: "/**",
       },
     ],
   },
-  
+
   reactStrictMode: false,
 };
 

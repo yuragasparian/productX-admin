@@ -1,25 +1,22 @@
-import fetchWithAuth from "@/lib/fetch-with-auth"
-import formDataFromObject from "@/lib/form-data-from-object"
-import { ProductFormValues } from "@/types/forms"
-import { Product } from "@/types/product"
-import { MessageResponse } from "@/types/response"
+import fetchWithAuth from "@/lib/fetch-with-auth";
+import formDataFromObject from "@/lib/form-data-from-object";
+import { Product } from "@/types/product";
+import { Response } from "@/types/response";
 
 type Props = {
-    productData: Partial<Product> | ProductFormValues
-}
+  productData: Product;
+};
 
-const addProduct = async ({ productData }: Props):Promise<MessageResponse> => {
-    
-    const productForm = formDataFromObject(productData)
-    if(productData.product_image[0]) {
-        productForm.append("image", productData.product_image[0]);
-    }
-    
-    return fetchWithAuth(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/new`, {
-        method: "POST",
-        body: productForm
-    })    
-}
+const addProduct = async ({ productData }: Props) => {
+  const productForm = formDataFromObject(productData);
+  if (productData.image[0]) {
+    productForm.append("image", productData.image[0]);
+  }
 
+  return fetchWithAuth<Response<Product>>(`/products/new`, {
+    method: "POST",
+    body: productForm,
+  });
+};
 
-export default addProduct
+export default addProduct;

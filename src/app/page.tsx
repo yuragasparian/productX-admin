@@ -1,29 +1,29 @@
 "use client";
-
 import Dashboard from "@/components/dashboard";
-import React, { useEffect, useState } from "react";
-import ProductsTable from "./../components/products-table/index";
-import { useRouter } from "next/navigation";
+import ProductsTable from "@/components/products-table";
+import getUserInfo from "@/actions/auth/get-user-info";
+import { useEffect } from "react";
+import userStore from "@/store/user-store";
+import checkTokenExistence from "@/lib/check-token-existence";
 
 const Home = () => {
-  const router = useRouter();
-  const [checked, setChecked] = useState(false);
-
+  const setUser = userStore.getState().setUser;
+  const user = userStore((state) => state.user);
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.replace("/login");
-    } else {
-      setChecked(true);
-    }
-  }, [router]);
-
-  if (!checked) return null;
+    checkTokenExistence();
+    const getUser = async () => {
+      const userInfo = await getUserInfo();
+      setUser(userInfo);
+    };
+    getUser();
+  }, [setUser]);
 
   return (
-    <Dashboard>
-      <ProductsTable />
-    </Dashboard>
+    user && (
+      <Dashboard>
+        <ProductsTable />
+      </Dashboard>
+    )
   );
 };
 

@@ -1,29 +1,20 @@
-import fetchWithAuth from "@/lib/fetch-with-auth"
-import formDataFromObject from "@/lib/form-data-from-object"
-import getDirtyValues from "@/lib/get-form-dirty-values"
-import { MessageResponse } from "@/types/response";
+import fetchWithAuth from "@/lib/fetch-with-auth";
+import formDataFromObject from "@/lib/form-data-from-object";
+import getDirtyValues from "@/lib/get-form-dirty-values";
 
+const editProduct = async (dirtyFields: any, allFields: any, productId: number) => {
+  const dirtyValues = getDirtyValues(dirtyFields, allFields);
 
+  const productForm = formDataFromObject(dirtyValues);
 
-const editProduct = async (dirtyFields: any, allFields: any, productId: number): Promise<MessageResponse> => {
+  if (dirtyValues.product_image) {
+    productForm.append("image", dirtyValues.product_image[0]);
+  }
 
-    const dirtyValues = getDirtyValues(
-        dirtyFields,
-        allFields
-    );
+  return fetchWithAuth(`/products/${productId}`, {
+    method: "PUT",
+    body: productForm,
+  });
+};
 
-    const productForm = formDataFromObject(dirtyValues)
-
-    if (dirtyValues.product_image) {
-        productForm.append("image", dirtyValues.product_image[0]);
-    }
-
-
-    return fetchWithAuth(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/edit/${productId}`, {
-        method: "PATCH",
-        body: productForm
-    })
-}
-
-
-export default editProduct
+export default editProduct;

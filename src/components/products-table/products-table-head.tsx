@@ -1,7 +1,6 @@
 import React from "react";
 import DownloadCSVButton from "./csv-button";
 
-
 const columns = [
   "Image",
   "Product Name",
@@ -10,7 +9,7 @@ const columns = [
   "Price",
   "Stock Quantity",
   "Status",
-  <DownloadCSVButton />
+  <DownloadCSVButton key={"csv"} />,
 ];
 const ProductsTableHead = () => {
   return (
@@ -18,11 +17,7 @@ const ProductsTableHead = () => {
       <tr>
         {columns.map((col, index) => {
           return (
-            <th
-              key={String(col)}
-              scope="col"
-              className={`py-1 ${index === 1 ? "text-left" : ""}`}
-            >
+            <th key={String(col)} scope="col" className={`py-1 ${index === 1 ? "text-left" : ""}`}>
               {col}
             </th>
           );

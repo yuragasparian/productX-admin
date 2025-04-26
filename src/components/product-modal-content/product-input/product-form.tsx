@@ -2,7 +2,6 @@ import { useFormContext } from "react-hook-form";
 import ImageUpload from "./image-upload";
 import ProductDetails from "./product-details";
 import Textarea from "@/components/ui/textarea";
-import React, { Dispatch, SetStateAction } from "react";
 import InputError from "@/components/ui/input-error";
 
 type Props = {
@@ -18,7 +17,7 @@ const ProductForm = ({ editStep, setEditStep, onSubmit }: Props) => {
     handleSubmit,
   } = useFormContext();
 
-  const handleNextClick = (data:any) => {
+  const handleNextClick = (data: any) => {
     if (editStep === "details") {
       setEditStep("description");
     } else {
@@ -50,9 +49,7 @@ const ProductForm = ({ editStep, setEditStep, onSubmit }: Props) => {
               },
             })}
           />
-          {errors.description?.message && (
-            <InputError>{errors.description.message}</InputError>
-          )}
+          {errors.description?.message && <InputError>{errors.description.message}</InputError>}
         </div>
       )}
     </form>
