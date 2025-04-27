@@ -1,16 +1,19 @@
 import InputError from "@/components/ui/input-error";
 import Textarea from "@/components/ui/textarea";
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useProductFormContext } from "./product-form-context";
 
 const Description = () => {
   const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+    formMethods: {
+      register,
+      formState: { errors },
+    },
+  } = useProductFormContext();
   return (
     <div className="text-left w-full">
       <Textarea
+        placeholder="Product description"
         {...register("description", {
           required: "Description is required",
           maxLength: {

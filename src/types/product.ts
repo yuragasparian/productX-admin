@@ -24,8 +24,10 @@ export type ProductHistory = {
 
 export type ProductFormFields = Pick<
   Product,
-  "image" | "name" | "sku" | "category" | "price" | "stockQuantity" | "description"
->;
+  "name" | "sku" | "category" | "price" | "stockQuantity" | "description"
+> & {
+  image: FileList | null;
+};
 
 export enum ProductCategory {
   Electronics = "Electronics",

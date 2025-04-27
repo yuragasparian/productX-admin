@@ -1,15 +1,21 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useState } from "react";
 
-export const useImagePreview = (file: File | undefined) => {
-  const previewUrl = useMemo(() => {
-    return file ? URL.createObjectURL(file) : null;
-  }, [file]);
+export function useImagePreview(file: File | undefined) {
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!file) {
+      setPreviewUrl(null);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    setPreviewUrl(objectUrl);
+
     return () => {
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      URL.revokeObjectURL(objectUrl);
     };
-  }, [previewUrl]);
+  }, [file]);
 
   return previewUrl;
-};
+}

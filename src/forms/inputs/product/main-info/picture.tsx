@@ -1,10 +1,13 @@
-import ImageInputIcon from "@/components/product-modal-content/product-input/image-input-icon";
 import { Input } from "@/components/ui/input";
-import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useProductFormContext } from "../product-form-context";
+import ImageUploadIcon from "@/components/ui/image-upload-icon";
 
 const Picture = () => {
-  const { register } = useFormContext();
+  const {
+    formMethods: { register },
+    imageUrl,
+  } = useProductFormContext();
+
   return (
     <div className="relative">
       <Input
@@ -12,13 +15,11 @@ const Picture = () => {
         className="size-67 bg-cover bg-center cursor-pointer text-transparent"
         type="file"
         multiple={false}
-        style={
-          {
-            // backgroundImage: previewImageUrl ? `url(${previewImageUrl})` : `none`,
-          }
-        }
+        style={{
+          backgroundImage: imageUrl ? `url(${imageUrl})` : `none`,
+        }}
       />
-      {/* <ImageInputIcon imageExists={!!previewImageUrl} /> */}
+      <ImageUploadIcon imageExists={!!imageUrl} />
     </div>
   );
 };

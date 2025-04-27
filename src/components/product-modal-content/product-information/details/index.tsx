@@ -1,33 +1,28 @@
 import Badge from "@/components/ui/badge";
-import { productModalsStore } from "@/store/product-modals-store";
-import { Product } from "@/types/product";
+import { imagePath } from "@/lib/utils";
+import productStore from "@/store/product";
 import Image from "next/image";
 
-type Props = {
-  product: Product
-}
-
-const ProductInfoDetails = ({product}:Props) => {
-
-
+const ProductInfoDetails = () => {
+  const product = productStore.getState().selectedProduct!;
   const productDetails = [
     { label: "Name", value: product.name },
     { label: "SKU", value: product.sku },
     { label: "Category", value: product.category },
     { label: "Price", value: product.price },
-    { label: "Stock Quantity", value: product.stock_quantity },
-    { label: "Status", value: <Badge quantity={product.stock_quantity} /> },
+    { label: "Stock Quantity", value: product.stockQuantity },
+    { label: "Status", value: <Badge quantity={product.stockQuantity} /> },
   ];
 
   return (
     <>
       <div className="flex gap-5">
         <Image
-          src={product.product_image || "/no-product-image.jpg"}
+          src={imagePath(product.image)}
           alt={`${product.name} image`}
           width={188}
           height={188}
-          className="rounded-xl object-cover"
+          className="rounded-xl object-cover object-center aspect-square"
         />
 
         <div className="flex flex-col gap-3 w-full">
@@ -39,7 +34,6 @@ const ProductInfoDetails = ({product}:Props) => {
           ))}
         </div>
       </div>
-
     </>
   );
 };

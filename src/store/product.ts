@@ -2,9 +2,12 @@ import { create } from "zustand";
 import type { Product } from "@/types/product";
 // import getProducts from "@/actions/products/get-products";
 
-type productStore = {
+type ProductStore = {
   products: Product[] | null;
   setProducts: (products: Product[]) => void;
+
+  selectedProduct: Product | null;
+  setSelectedProduct: (id: number) => void;
 
   //filters
   query: string;
@@ -14,15 +17,17 @@ type productStore = {
   page: string;
   setPage: (page: string) => void;
 
-  totalProducts: number;
-  setTotalProducts: (totalProducts: number) => void;
-
   // fetchProducts: () => Promise<void>;
 };
 
-const productStore = create<productStore>((set) => ({
+const productStore = create<ProductStore>((set, get) => ({
   products: null,
   setProducts: (products) => set({ products }),
+
+  selectedProduct: null,
+  setSelectedProduct: (id) => {
+    set({ selectedProduct: get().products?.find((product) => product.id == id) });
+  },
 
   query: "",
   setQuery: (query) => {
@@ -35,11 +40,6 @@ const productStore = create<productStore>((set) => ({
   page: "1",
   setPage: (page) => {
     set({ page });
-  },
-
-  totalProducts: 0,
-  setTotalProducts: (totalProducts) => {
-    set({ totalProducts });
   },
 
   // fetchProducts: async () => {

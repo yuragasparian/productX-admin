@@ -3,7 +3,7 @@
 import { usePagination } from "@/hooks/use-pagination";
 import ArrowButton from "./arrow-button";
 import PageButton from "./page-button";
-import productStore from "@/store/product-store";
+import productStore from "@/store/product";
 
 export default function Pagination() {
   const totalProducts = productStore((state) => state.totalProducts);

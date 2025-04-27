@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import debounce from "lodash.debounce";
-import productStore from "@/store/product-store";
+import productStore from "@/store/product";
 
 export type FormValues = {
   query: string;

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import userStore from "@/store/user-store";
+import userStore from "@/store/user";
 
 const checkTokenExistence = () => {
   const token = localStorage.getItem("token");

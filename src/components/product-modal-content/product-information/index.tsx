@@ -5,36 +5,32 @@ import ProductInfoDescription from "./description";
 import ProductInfoChangeHistory from "./change-history";
 import BtnEditProduct from "@/components/products-table/product-modifiers/btn-edit-product";
 import BtnRemoveProduct from "@/components/products-table/product-modifiers/btn-remove-product";
-import { productModalsStore } from "@/store/product-modals-store";
+import productStore from "@/store/product";
 
 const ModalProductInformation = () => {
-  
-  const [activeInfoTab, setActiveInfoTab] =
-    useState<keyof typeof tabsContent>("details");
+  const [activeTab, setActiveTab] = useState<keyof typeof tabsContent>("details");
 
-  const product = productModalsStore.getState().getSelectedProduct();
+  const product = productStore.getState().selectedProduct;
 
-  if(!product) return null
+  if (!product) return null;
 
   const tabsContent = {
-    details: <ProductInfoDetails product={product}/>,
-    description: <ProductInfoDescription productDescription={product.description}/>,
-    history: <ProductInfoChangeHistory history={product.history}/>,
+    details: <ProductInfoDetails />,
+    description: <ProductInfoDescription />,
+    history: <ProductInfoChangeHistory />,
   };
 
   return (
     <>
-      <TabPagination
-        activeTab={activeInfoTab}
-        setActiveTab={setActiveInfoTab}
-      />
-      {tabsContent[activeInfoTab]}
+      <TabPagination activeTab={activeTab} setActiveTab={setActiveTab} />
+      {tabsContent[activeTab]}
 
-      {activeInfoTab !== "history" &&
+      {activeTab !== "history" && (
         <div className="flex justify-end items-center gap-2">
-        <BtnEditProduct selectedProductId={product.id} />
-        <BtnRemoveProduct selectedProductId={product.id}/>
-      </div>}
+          <BtnEditProduct id={product.id} />
+          <BtnRemoveProduct id={product.id} />
+        </div>
+      )}
     </>
   );
 };

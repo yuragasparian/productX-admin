@@ -1,6 +1,6 @@
 import React from "react";
 import Pagination from "./pagination/index";
-import productStore from "@/store/product-store";
+import productStore from "@/store/product";
 
 const DashboardFooter = () => {
   const totalProducts = productStore((state) => state.totalProducts);

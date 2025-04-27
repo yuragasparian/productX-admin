@@ -1,15 +1,22 @@
 import Button from "@/components/ui/button";
-import React, { useContext } from "react";
-import { StepContext } from "../step-context";
+import { useProductFormContext } from "../product-form-context";
 
 const SaveButton = () => {
-  const { step } = useContext(StepContext)!;
+  const {
+    step,
+    setStep,
+    formMethods: { handleSubmit },
+  } = useProductFormContext();
   const btnText = {
     1: "Next",
     2: "Save",
   };
+  const onClick = {
+    1: handleSubmit(() => setStep(2)),
+    2: () => {},
+  };
   return (
-    <Button form="product-form" variant="secondary" className="w-full">
+    <Button form="product-form" variant="secondary" className="w-full" onClick={onClick[step]}>
       {btnText[step]}
     </Button>
   );

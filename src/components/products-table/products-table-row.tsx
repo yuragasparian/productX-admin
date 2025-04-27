@@ -34,9 +34,9 @@ const ProductsTableRow = ({ product }: Params) => {
       </td>
       <td className=" py-3">
         <div className="flex gap-2 justify-center">
-          <BtnProductInfo selectedProductId={product.id} />
-          <BtnEditProduct selectedProductId={product.id} />
-          <BtnRemoveProduct selectedProductId={product.id} />
+          <BtnProductInfo id={product.id} />
+          <BtnEditProduct id={product.id} />
+          <BtnRemoveProduct id={product.id} />
         </div>
       </td>
     </tr>

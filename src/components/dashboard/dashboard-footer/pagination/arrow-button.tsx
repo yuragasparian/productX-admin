@@ -1,6 +1,6 @@
 import Button from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
-import productStore from "@/store/product-store";
+import productStore from "@/store/product";
 import React from "react";
 
 type Props = {

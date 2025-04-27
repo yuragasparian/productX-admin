@@ -1,20 +1,20 @@
 import Button from "@/components/ui/button";
-import { productModalsStore } from "@/store/product-modals-store";
+import modalStore from "@/store/modal";
+import productStore from "@/store/product";
 import React from "react";
 import Icon from "@/components/ui/icon";
 
 type Props = {
-  selectedProductId: number;
+  id: number;
 };
 
-const BtnEditProduct = ({ selectedProductId }: Props) => {
-  const setActiveProductModal =
-    productModalsStore.getState().setActiveProductModal;
-  const setModalProductId = productModalsStore.getState().setModalProductId;
+const BtnEditProduct = ({ id }: Props) => {
+  const setActiveModal = modalStore.getState().setActiveModal;
+  const setSelectedProduct = productStore.getState().setSelectedProduct;
 
   const handleClick = () => {
-    setActiveProductModal("edit_product");
-    setModalProductId(selectedProductId);
+    setActiveModal("edit_product");
+    setSelectedProduct(id);
   };
 
   return (

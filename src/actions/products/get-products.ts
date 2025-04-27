@@ -1,6 +1,6 @@
 import PopupAlert from "@/components/ui/popup-alert";
 import fetchWithAuth from "@/lib/fetch-with-auth";
-import productStore from "@/store/product-store";
+import productStore from "@/store/product";
 import { ProductsGet } from "@/types/response";
 
 const getProducts = async () => {

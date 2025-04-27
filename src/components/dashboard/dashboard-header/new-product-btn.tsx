@@ -1,11 +1,16 @@
 import Button from "@/components/ui/button";
-import { productModalsStore } from "@/store/product-modals-store";
+import modalStore from "@/store/modal";
 import React from "react";
 
 const NewProductBtn = () => {
-  const setActiveProductModal = productModalsStore.getState().setActiveProductModal;
+  const setActiveModal = modalStore.getState().setActiveModal;
   return (
-    <Button variant={"secondary"} onClick={() => setActiveProductModal("new_product")}>
+    <Button
+      variant={"secondary"}
+      onClick={() => {
+        setActiveModal("new_product");
+      }}
+    >
       New product
     </Button>
   );

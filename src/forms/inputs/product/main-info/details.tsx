@@ -2,15 +2,15 @@ import { Input } from "@/components/ui/input";
 import InputError from "@/components/ui/input-error";
 import { Select } from "@/components/ui/select";
 import { ProductCategory } from "@/types/product";
-import React from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller } from "react-hook-form";
+import { useProductFormContext } from "../product-form-context";
 
 const Details = () => {
   const {
     register,
     control,
     formState: { errors },
-  } = useFormContext();
+  } = useProductFormContext().formMethods;
 
   const categoryOptions = Object.keys(ProductCategory).map((key) => ({
     label: ProductCategory[key as keyof typeof ProductCategory],
@@ -55,14 +55,14 @@ const Details = () => {
 
       <Input
         type="number"
-        {...register("stock_quantity", {
+        {...register("stockQuantity", {
           valueAsNumber: true,
           required: "Quantity is required",
           min: { value: 1, message: "Quantity must be at least 1" },
         })}
         placeholder="Stock Quantity"
       />
-      {errors.stock_quantity?.message && <InputError>{errors.stock_quantity.message}</InputError>}
+      {errors.stockQuantity?.message && <InputError>{errors.stockQuantity.message}</InputError>}
     </div>
   );
 };

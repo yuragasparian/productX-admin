@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import productStore from "@/store/product-store";
+import productStore from "@/store/product";
 
 export function usePagination(pageCount: number, maxPagesToShow = 4) {
   const page = parseInt(productStore((state) => state.page));

@@ -1,5 +1,5 @@
 import { Response } from "@/types/response";
-import userStore from "@/store/user-store";
+import userStore from "@/store/user";
 import { env } from "./env";
 
 type FetchOptions = {

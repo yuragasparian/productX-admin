@@ -6,7 +6,7 @@ type Props = {
   imageExists: boolean;
 };
 
-const ImageInputIcon = ({ imageExists }: Props) => {
+const ImageUploadIcon = ({ imageExists }: Props) => {
   const iconClass = imageExists ? "size-8" : "size-2/3";
   return (
     <div
@@ -26,4 +26,4 @@ const ImageInputIcon = ({ imageExists }: Props) => {
   );
 };
 
-export default ImageInputIcon;
+export default ImageUploadIcon;

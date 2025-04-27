@@ -1,21 +1,20 @@
 import Button from "@/components/ui/button";
-import { productModalsStore } from "@/store/product-modals-store";
-import { useContext } from "react";
-import { StepContext } from "../step-context";
+import modalStore from "@/store/modal";
+import { useProductFormContext } from "../product-form-context";
 
 const CancelButton = () => {
-  const closeProductModal = productModalsStore((state) => state.closeProductModal);
-  const { step, setStep } = useContext(StepContext)!;
+  const setActiveModal = modalStore.getState().setActiveModal;
+  const { step, setStep } = useProductFormContext();
   const btnText = {
     1: "Cancel",
     2: "Back",
   };
   const onClick = {
-    1: closeProductModal(),
-    2: setStep(1),
+    1: () => setActiveModal(null),
+    2: () => setStep(1),
   };
   return (
-    <Button onClick={() => onClick[step]} className="w-full">
+    <Button onClick={onClick[step]} className="w-full" type="button">
       {btnText[step]}
     </Button>
   );

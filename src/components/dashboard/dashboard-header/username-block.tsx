@@ -1,4 +1,4 @@
-import userStore from "@/store/user-store";
+import userStore from "@/store/user";
 import Image from "next/image";
 import Button from "@/components/ui/button";
 import Icon from "@/components/ui/icon";

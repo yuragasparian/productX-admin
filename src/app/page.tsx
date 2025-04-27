@@ -3,7 +3,7 @@ import Dashboard from "@/components/dashboard";
 import ProductsTable from "@/components/products-table";
 import getUserInfo from "@/actions/auth/get-user-info";
 import { useEffect } from "react";
-import userStore from "@/store/user-store";
+import userStore from "@/store/user";
 import checkTokenExistence from "@/lib/check-token-existence";
 
 const Home = () => {

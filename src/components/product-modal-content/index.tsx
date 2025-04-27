@@ -1,26 +1,24 @@
-"use client";
-
 import React from "react";
-import { productModalsStore, ActiveProductModal } from "@/store/product-modals-store";
+import modalStore, { ActiveModal } from "@/store/modal";
 import Dialogue from "../ui/dialogue";
 import ModalProductInformation from "./product-information";
-import ProductModalLayout from "./product-modal-layout";
-import ProductInput from "./product-input";
-import NewProduct from "./new-product";
+import ModalLayout from "./modal-layout";
+import NewProduct from "./product-input/new-product";
+import EditProduct from "./product-input/edit-product";
 
-const productModals: Record<NonNullable<ActiveProductModal>, React.JSX.Element> = {
+const productModals: Record<NonNullable<ActiveModal>, React.JSX.Element> = {
   product_info: <ModalProductInformation />,
-  edit_product: <ProductInput />,
+  edit_product: <EditProduct />,
   new_product: <NewProduct />,
 };
 
 const ProductModal = React.memo(() => {
-  const activeModal = productModalsStore((state) => state.activeProductModal);
+  const activeModal = modalStore((state) => state.activeModal);
 
   return (
     activeModal && (
       <Dialogue size="large">
-        <ProductModalLayout>{productModals[activeModal]}</ProductModalLayout>
+        <ModalLayout>{productModals[activeModal]}</ModalLayout>
       </Dialogue>
     )
   );
