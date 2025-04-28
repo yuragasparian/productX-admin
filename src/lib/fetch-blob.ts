@@ -1,10 +1,7 @@
-const fetchBolb = async (url: string) => {
-  const token = localStorage.getItem("token");
+import userStore from "@/store/user";
 
-  // if (!token) {
-  //     window.location.href = "/login"
-  //     throw new Error(`Unauthorized`);
-  // }
+const fetchBlob = async (url: string) => {
+  const token = userStore.getState().token;
 
   const headers: Record<string, string> = {
     Authorization: `Bearer ${token}`,
@@ -22,4 +19,4 @@ const fetchBolb = async (url: string) => {
   return response.blob();
 };
 
-export default fetchBolb;
+export default fetchBlob;

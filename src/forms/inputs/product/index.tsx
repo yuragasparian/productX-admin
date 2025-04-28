@@ -1,8 +1,8 @@
 import MainInfo from "./main-info";
 import Description from "./description";
-import { useProductFormContext } from "./product-form-context";
-import SaveButton from "./buttons/save-button";
-import CancelButton from "./buttons/cancel-button";
+import { useProductFormContext } from "./context/context";
+import SaveButton from "./buttons/save";
+import CancelButton from "./buttons/cancel";
 import useEditSubmit from "@/forms/submit-handlers/product/edit";
 import modalStore, { ActiveModal } from "@/store/modal";
 import useNewSubmit from "@/forms/submit-handlers/product/new";

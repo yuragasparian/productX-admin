@@ -7,12 +7,12 @@ type Props = {
 };
 
 const PageButton = ({ pageNumber }: Props) => {
-  const page = Number(productStore((state) => state.page));
-  const setPage = productStore((state) => state.setPage);
+  const currentPage = productStore((state) => state.currentPage);
+  const setCurrentPage = productStore.getState().setCurrentPage;
 
   const handlePageSelect = () => {
-    if (page !== pageNumber) {
-      setPage(String(pageNumber));
+    if (currentPage !== pageNumber) {
+      setCurrentPage(pageNumber);
     }
   };
 
@@ -20,7 +20,7 @@ const PageButton = ({ pageNumber }: Props) => {
     <Button
       variant={"ghost"}
       size={"pagination"}
-      className={page === pageNumber ? "border border-medium hover:border-medium" : ""}
+      className={currentPage === pageNumber ? "border border-medium hover:border-medium" : ""}
       onClick={handlePageSelect}
     >
       {pageNumber}

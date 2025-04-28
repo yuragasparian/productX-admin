@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Button from "../ui/button";
 import getCSV from "@/actions/products/get-csv";
@@ -7,7 +5,6 @@ import getCSV from "@/actions/products/get-csv";
 const DownloadCSVButton = () => {
   const handleDownload = async () => {
     const blob = await getCSV();
-
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;

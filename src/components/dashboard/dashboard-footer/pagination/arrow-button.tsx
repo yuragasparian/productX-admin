@@ -9,17 +9,17 @@ type Props = {
 };
 
 const ArrowButton = ({ direction, disabled }: Props) => {
-  const page = Number(productStore((state) => state.page));
-  const setPage = productStore((state) => state.setPage);
+  const currentPage = productStore((state) => state.currentPage);
+  const setCurrentPage = productStore.getState().setCurrentPage;
 
-  const nextPage = String(page + 1);
-  const prevPage = String(page - 1);
+  const nextPage = currentPage + 1;
+  const prevPage = currentPage - 1;
 
   return (
     <Button
       variant={"ghost"}
       size={"pagination"}
-      onClick={() => setPage(direction === "right" ? nextPage : prevPage)}
+      onClick={() => setCurrentPage(direction === "right" ? nextPage : prevPage)}
       disabled={disabled}
     >
       <Icon

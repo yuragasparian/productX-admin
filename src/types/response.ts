@@ -16,7 +16,15 @@ export type UserInfo = {
   item: PublicUser;
 };
 
+export type Token = {
+  item: string;
+};
+
 export type ProductsGet = {
   items: Product[];
   pages: number;
+};
+
+export type ProductItem = {
+  item: Product;
 };

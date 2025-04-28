@@ -2,10 +2,10 @@ import { useMemo } from "react";
 import productStore from "@/store/product";
 
 export function usePagination(pageCount: number, maxPagesToShow = 4) {
-  const page = parseInt(productStore((state) => state.page));
+  const currentPage = productStore((state) => state.currentPage);
 
   return useMemo(() => {
-    let startPage = Math.max(1, page - Math.floor(maxPagesToShow / 2));
+    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
     let endPage = startPage + maxPagesToShow - 1;
 
     if (endPage > pageCount) {
@@ -16,7 +16,7 @@ export function usePagination(pageCount: number, maxPagesToShow = 4) {
     const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
     return {
-      page,
+      currentPage,
       startPage,
       endPage,
       pageNumbers,
@@ -25,5 +25,5 @@ export function usePagination(pageCount: number, maxPagesToShow = 4) {
       showFirstPage: startPage > 1,
       showLastPage: endPage < pageCount,
     };
-  }, [page, pageCount, maxPagesToShow]);
+  }, [currentPage, pageCount, maxPagesToShow]);
 }

@@ -1,8 +1,8 @@
 import { env } from "@/lib/env";
-import fetchBolb from "@/lib/fetch-bolb";
+import fetchBlob from "@/lib/fetch-blob";
 
 const getCSV = async () => {
-  return fetchBolb(`${env.SERVER_URL}/products/csv`);
+  return await fetchBlob(`${env.SERVER_URL}/products/csv`);
 };
 
 export default getCSV;

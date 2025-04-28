@@ -1,20 +1,23 @@
-"use client";
-
 import { usePagination } from "@/hooks/use-pagination";
 import ArrowButton from "./arrow-button";
 import PageButton from "./page-button";
 import productStore from "@/store/product";
 
 export default function Pagination() {
-  const totalProducts = productStore((state) => state.totalProducts);
-  const pageCount = Math.ceil(totalProducts / 6);
+  const pages = productStore((state) => state.pages);
 
-  const { page, pageNumbers, showFirstPage, showLastPage, hasLeftEllipsis, hasRightEllipsis } =
-    usePagination(pageCount);
+  const {
+    currentPage,
+    pageNumbers,
+    showFirstPage,
+    showLastPage,
+    hasLeftEllipsis,
+    hasRightEllipsis,
+  } = usePagination(pages);
 
   return (
     <div className="flex justify-end items-center gap-2">
-      <ArrowButton direction="left" disabled={page <= 1} />
+      <ArrowButton direction="left" disabled={currentPage <= 1} />
 
       {showFirstPage && (
         <>
@@ -30,11 +33,11 @@ export default function Pagination() {
       {showLastPage && (
         <>
           {hasRightEllipsis && <span>···</span>}
-          <PageButton pageNumber={pageCount} />
+          <PageButton pageNumber={pages} />
         </>
       )}
 
-      <ArrowButton direction="right" disabled={page >= pageCount} />
+      <ArrowButton direction="right" disabled={currentPage >= pages} />
     </div>
   );
 }

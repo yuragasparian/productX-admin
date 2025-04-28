@@ -1,7 +1,7 @@
 import InputError from "@/components/ui/input-error";
 import Textarea from "@/components/ui/textarea";
 import React from "react";
-import { useProductFormContext } from "./product-form-context";
+import { useProductFormContext } from "./context/context";
 
 const Description = () => {
   const {

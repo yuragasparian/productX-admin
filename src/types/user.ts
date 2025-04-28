@@ -11,7 +11,3 @@ export type User = {
 export type PublicUser = Omit<User, "password">;
 
 export type Login = Pick<User, "userName" | "password">;
-
-export type Token = {
-  item: string;
-};

@@ -1,5 +1,5 @@
 import ProductInput from "@/forms/inputs/product";
-import ProductFormProvider from "@/forms/inputs/product/product-form-context";
+import ProductFormProvider from "@/forms/inputs/product/context/provider";
 import { useImagePreview } from "@/hooks/use-image-preview";
 import { ProductFormFields } from "@/types/product";
 import React from "react";

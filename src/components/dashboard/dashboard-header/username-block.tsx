@@ -29,7 +29,7 @@ const UsernameBlock = () => {
         src={imagePath(user.image)}
         alt="profile image"
       />
-      <span className="p4">{user?.userName}</span>
+      <span className="p4">{user.userName}</span>
       <Button size={"icon"} variant={"default"} onClick={onLogout}>
         <Icon name="logout" />
       </Button>

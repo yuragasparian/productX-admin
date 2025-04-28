@@ -1,4 +1,5 @@
-import type { Token, Login } from "@/types/user";
+import { Token } from "@/types/response";
+import type { Login } from "@/types/user";
 import fetchWithAuth from "@/lib/fetch-with-auth";
 import PopupAlert from "@/components/ui/popup-alert";
 

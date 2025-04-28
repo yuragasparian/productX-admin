@@ -1,12 +1,20 @@
+import { ProductItem } from "@/types/response";
 import fetchWithAuth from "@/lib/fetch-with-auth";
-import { Product } from "@/types/product";
-import { Response } from "@/types/response";
+import PopupAlert from "@/components/ui/popup-alert";
+import productStore from "@/store/product";
 
 const addProduct = async (formData: FormData) => {
-  return fetchWithAuth<Response<Product>>(`/products`, {
+  const { meta, data } = await fetchWithAuth<ProductItem>(`/products`, {
     method: "POST",
     body: formData,
   });
+  if (!data) {
+    return PopupAlert.show({ message: meta.error?.message });
+  }
+  const addProductToTop = productStore.getState().addProductToTop;
+  console.log(data.item);
+
+  addProductToTop(data.item);
 };
 
 export default addProduct;

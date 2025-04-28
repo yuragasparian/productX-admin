@@ -3,8 +3,8 @@ import Pagination from "./pagination/index";
 import productStore from "@/store/product";
 
 const DashboardFooter = () => {
-  const totalProducts = productStore((state) => state.totalProducts);
-  if (totalProducts < 6) return null;
+  const pages = productStore((state) => state.pages);
+  if (pages <= 1) return null;
   return (
     <div>
       <Pagination />

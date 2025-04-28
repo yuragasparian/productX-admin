@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { useProductFormContext } from "../product-form-context";
+import { useProductFormContext } from "../context/context";
 import ImageUploadIcon from "@/components/ui/image-upload-icon";
 
 const Picture = () => {

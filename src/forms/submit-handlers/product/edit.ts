@@ -1,4 +1,4 @@
-import { useProductFormContext } from "@/forms/inputs/product/product-form-context";
+import { useProductFormContext } from "@/forms/inputs/product/context/context";
 import editProduct from "@/actions/products/edit-product";
 import formDataFromDirtyValues from "@/lib/form-data-from-dirty-values";
 import productStore from "@/store/product";

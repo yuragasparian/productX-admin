@@ -5,12 +5,13 @@ import BtnProductInfo from "./product-modifiers/btn-product-info";
 import BtnEditProduct from "./product-modifiers/btn-edit-product";
 import BtnRemoveProduct from "./product-modifiers/btn-remove-product";
 import { imagePath } from "@/lib/utils";
+import React from "react";
 
 type Params = {
   product: Product;
 };
 
-const ProductsTableRow = ({ product }: Params) => {
+const ProductsTableRow = React.memo(({ product }: Params) => {
   return (
     <tr className=" border-t border-gray-100">
       <td className=" py-3 text-center">
@@ -41,6 +42,7 @@ const ProductsTableRow = ({ product }: Params) => {
       </td>
     </tr>
   );
-};
+});
 
 export default ProductsTableRow;
+ProductsTableRow.displayName = "Product table row";

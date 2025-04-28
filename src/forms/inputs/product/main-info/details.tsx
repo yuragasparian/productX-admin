@@ -3,7 +3,7 @@ import InputError from "@/components/ui/input-error";
 import { Select } from "@/components/ui/select";
 import { ProductCategory } from "@/types/product";
 import { Controller } from "react-hook-form";
-import { useProductFormContext } from "../product-form-context";
+import { useProductFormContext } from "../context/context";
 
 const Details = () => {
   const {
@@ -19,7 +19,11 @@ const Details = () => {
 
   return (
     <div className="flex flex-col justify-between">
-      <Input {...register("name", { required: "Name is required" })} placeholder="Name" />
+      <Input
+        {...register("name", { required: "Name is required" })}
+        placeholder="Name"
+        autoComplete="off"
+      />
       {errors.name?.message && <InputError>{errors.name.message}</InputError>}
 
       <Input
@@ -29,6 +33,7 @@ const Details = () => {
           valueAsNumber: true,
         })}
         placeholder="SKU"
+        autoComplete="off"
       />
       {errors.sku?.message && <InputError>{errors.sku.message}</InputError>}
 
@@ -50,6 +55,7 @@ const Details = () => {
           min: { value: 1, message: "Price must be at least 1" },
         })}
         placeholder="Price"
+        autoComplete="off"
       />
       {errors.price?.message && <InputError>{errors.price.message}</InputError>}
 
@@ -61,6 +67,7 @@ const Details = () => {
           min: { value: 1, message: "Quantity must be at least 1" },
         })}
         placeholder="Stock Quantity"
+        autoComplete="off"
       />
       {errors.stockQuantity?.message && <InputError>{errors.stockQuantity.message}</InputError>}
     </div>

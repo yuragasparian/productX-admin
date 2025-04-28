@@ -2,7 +2,7 @@ import React from "react";
 import modalStore, { ActiveModal } from "@/store/modal";
 import Dialogue from "../ui/dialogue";
 import ModalProductInformation from "./product-information";
-import ModalLayout from "./modal-layout";
+import ModalLayout from "./layout";
 import NewProduct from "./product-input/new-product";
 import EditProduct from "./product-input/edit-product";
 

@@ -1,9 +1,7 @@
-"use client";
-
 import UsernameBlock from "./username-block";
-import FilterInput from "./filter-input";
 import React from "react";
 import NewProductBtn from "./new-product-btn";
+import ProductFilter from "@/forms/inputs/filters/product-filter";
 
 const DashboardHeader = () => {
   return (
@@ -11,8 +9,7 @@ const DashboardHeader = () => {
       <UsernameBlock />
       <div className="flex justify-end gap-3 w-3xl">
         <NewProductBtn />
-
-        <FilterInput />
+        <ProductFilter />
       </div>
     </div>
   );
