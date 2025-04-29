@@ -1,4 +1,9 @@
+"use client";
+
 const calculateRowsPerPage = () => {
+  if (typeof window === "undefined") {
+    return 0; // Return a default value or handle SSR case
+  }
   const windowPadding = 32;
   const windowHeight = window.innerHeight;
   const headerHeight = 48;

@@ -28,3 +28,7 @@ export type ProductsGet = {
 export type ProductItem = {
   item: Product;
 };
+
+export type ProductDelete = {
+  item: number;
+};

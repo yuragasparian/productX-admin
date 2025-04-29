@@ -14,12 +14,14 @@ type ProductStore = {
   setSelectedProduct: (id: number) => void;
 
   //filters
-  query: string;
-  setQuery: (query: string) => void;
-  status: ProductStatus;
-  setStatus: (status: ProductStatus) => void;
+  query: string | undefined;
+  setQuery: (query: string | undefined) => void;
+  status: ProductStatus | undefined;
+  setStatus: (status: ProductStatus | undefined) => void;
   currentPage: number;
   setCurrentPage: (currentPage: number) => void;
+  rowsPerPage: number;
+  setRowsPerPage: (rowsPerPage: number) => void;
 };
 
 const productStore = create<ProductStore>((set, get) => ({
@@ -34,7 +36,7 @@ const productStore = create<ProductStore>((set, get) => ({
   addProductToTop: (newProduct) =>
     set((state) => {
       const updatedProducts = [newProduct, ...state.products!];
-      if (state.pages > 1) updatedProducts.pop();
+      if (state.products!.length >= state.rowsPerPage) updatedProducts.pop();
       return { products: updatedProducts };
     }),
   pages: 1,
@@ -47,17 +49,21 @@ const productStore = create<ProductStore>((set, get) => ({
     set({ selectedProduct: get().products?.find((product) => product.id == id) });
   },
 
-  query: "",
+  query: undefined,
   setQuery: (query) => {
     set({ query });
   },
-  status: ProductStatus.ALL_STOCK,
+  status: undefined,
   setStatus: (status) => {
     set({ status });
   },
   currentPage: 1,
   setCurrentPage: (currentPage) => {
     set({ currentPage });
+  },
+  rowsPerPage: 8,
+  setRowsPerPage: (rowsPerPage) => {
+    set({ rowsPerPage });
   },
 }));
 

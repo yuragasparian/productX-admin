@@ -13,29 +13,33 @@ export const useProductFilters = () => {
   const form = useForm<FormValues>();
   const { watch } = form;
 
-  const setQuery = productStore.getState().setQuery;
-  const setStatus = productStore.getState().setStatus;
+  const { setQuery, setStatus } = productStore((state) => state);
+
+  // const [query, status] = watch(["query", "status"])
 
   useEffect(() => {
-    const debouncedQuery = debounce((query: string) => {
+    const debouncedQuery = debounce((query: string | undefined) => {
       setQuery(query);
     }, 1000);
-
-    const subscription = watch((values) => {
-      //still refetching when values are set back to default, as watch doesnt trigger when value is set to default ("")
-      if (values.query || values.query === "") {
-        debouncedQuery(values.query);
-      }
-      if (values.status || values.status === "") {
-        setStatus(values.status);
-      }
+    const { unsubscribe } = watch(({ query, status }) => {
+      debouncedQuery(query);
+      setStatus(status);
     });
+    return () => unsubscribe();
+  }, [watch, setStatus, setQuery]);
 
-    return () => {
-      subscription.unsubscribe();
-      debouncedQuery.cancel();
-    };
-  }, [watch, setQuery, setStatus]);
+  // useEffect(() => {
+
+  //   watch((values) => {
+  //     //when filters cahnged, but are empty, setting to default values
+  //     if (values.query) {
+  //       debouncedQuery(values.query || "");
+  //     }
+  //     if (values.status) {
+  //       setStatus(values.status || "");
+  //     }
+  //   });
+  // }, [watch, setQuery, setStatus, debouncedQuery]);
 
   return form;
 };
