@@ -1,11 +1,11 @@
-import { ProductFormValues } from "@/forms/resolvers/product-schema";
+import { ProductFormFields } from "@/types/product";
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 interface ProductFormContextType {
   step: 1 | 2;
   setStep: Dispatch<SetStateAction<1 | 2>>;
-  formMethods: UseFormReturn<ProductFormValues>;
+  formMethods: UseFormReturn<ProductFormFields>;
   imageUrl?: string;
 }
 export const ProductFormContext = createContext<ProductFormContextType | null>(null);

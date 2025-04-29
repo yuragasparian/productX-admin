@@ -19,12 +19,17 @@ const Details = () => {
 
   return (
     <div className="flex flex-col justify-between">
-      <Input {...register("name")} placeholder="Name" autoComplete="off" />
+      <Input
+        {...register("name", { required: "Name is required" })}
+        placeholder="Name"
+        autoComplete="off"
+      />
       {errors.name?.message && <InputError>{errors.name.message}</InputError>}
 
       <Input
         type="number"
         {...register("sku", {
+          required: "SKU is required",
           valueAsNumber: true,
         })}
         placeholder="SKU"
@@ -45,7 +50,9 @@ const Details = () => {
       <Input
         type="number"
         {...register("price", {
+          required: "Price is required",
           valueAsNumber: true,
+          min: { value: 1, message: "Price must be at least 1" },
         })}
         placeholder="Price"
         autoComplete="off"
@@ -56,6 +63,8 @@ const Details = () => {
         type="number"
         {...register("stockQuantity", {
           valueAsNumber: true,
+          required: "Quantity is required",
+          min: { value: 1, message: "Quantity must be at least 1" },
         })}
         placeholder="Stock Quantity"
         autoComplete="off"

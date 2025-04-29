@@ -1,11 +1,9 @@
 import ProductInput from "@/forms/inputs/product";
 import ProductFormProvider from "@/forms/inputs/product/context/provider";
-import { productSchema, ProductFormValues } from "@/forms/resolvers/product-schema";
 import { useImagePreview } from "@/hooks/use-image-preview";
 import { imagePath } from "@/lib/utils";
 import productStore from "@/store/product";
 import { ProductFormFields } from "@/types/product";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 const EditProduct = () => {
@@ -23,7 +21,6 @@ const EditProduct = () => {
       description: selectedProduct?.description,
     },
     mode: "onBlur",
-    resolver: zodResolver(productSchema),
   });
   const newImage = formMethods.watch("image")?.[0];
   const previewUrl = useImagePreview(newImage);
