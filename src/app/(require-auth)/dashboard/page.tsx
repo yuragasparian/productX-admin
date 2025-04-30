@@ -10,11 +10,6 @@ import ProductModal from "@/components/product-modal-content";
 const Dashboard = () => {
   const setUser = userStore.getState().setUser;
   const user = userStore((state) => state.user);
-  // const setRowsPerPage = productStore.getState().setRowsPerPage;
-
-  // const rpp = calculateRowsPerPage();
-  // // dont call directly at the top level (hook)
-  // setRowsPerPage(rpp);
 
   useEffect(() => {
     const getUser = async () => {

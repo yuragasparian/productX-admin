@@ -1,28 +1,24 @@
-import React from "react";
-import modalStore, { ActiveModal } from "@/store/modal";
 import Dialogue from "../ui/dialogue";
-import ModalProductInformation from "./product-information";
-import ModalLayout from "./layout";
-import NewProduct from "./product-input/new-product";
-import EditProduct from "./product-input/edit-product";
+import productModals from "../configs/modal";
+import modalStore from "@/store/modal";
+import ModalCloseBtn from "./modal-close-btn";
 
-const productModals: Record<NonNullable<ActiveModal>, React.JSX.Element> = {
-  product_info: <ModalProductInformation />,
-  edit_product: <EditProduct />,
-  new_product: <NewProduct />,
-};
-
-const ProductModal = React.memo(() => {
+const ProductModal = () => {
   const activeModal = modalStore((state) => state.activeModal);
+  if (!activeModal) return null;
+  const { headline, component } = productModals[activeModal];
 
   return (
-    activeModal && (
-      <Dialogue size="large">
-        <ModalLayout>{productModals[activeModal]}</ModalLayout>
-      </Dialogue>
-    )
+    <Dialogue size="large">
+      <div className="flex flex-col gap-6">
+        <div className="flex justify-between items-center">
+          <span className="h1">{headline}</span>
+          <ModalCloseBtn />
+        </div>
+        {component}
+      </div>
+    </Dialogue>
   );
-});
+};
 
 export default ProductModal;
-ProductModal.displayName = "Product Modal";

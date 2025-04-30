@@ -1,7 +1,7 @@
 "use client";
 
-import DashboardFooter from "@/components/dashboard/dashboard-footer";
-import DashboardHeader from "@/components/dashboard/dashboard-header";
+import DashboardFooter from "@/components/dashboard/footer";
+import DashboardHeader from "@/components/dashboard/header";
 import React, { ReactNode } from "react";
 
 type Props = {

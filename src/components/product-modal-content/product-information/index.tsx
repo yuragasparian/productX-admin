@@ -7,7 +7,7 @@ import BtnEditProduct from "@/components/products-table/product-modifiers/btn-ed
 import BtnRemoveProduct from "@/components/products-table/product-modifiers/btn-remove-product";
 import productStore from "@/store/product";
 
-const ModalProductInformation = () => {
+const ProductInformation = () => {
   const [activeTab, setActiveTab] = useState<keyof typeof tabsContent>("details");
 
   const product = productStore.getState().selectedProduct;
@@ -35,4 +35,4 @@ const ModalProductInformation = () => {
   );
 };
 
-export default ModalProductInformation;
+export default ProductInformation;
