@@ -2,9 +2,9 @@ import Image from "next/image";
 import Button from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import PopupAlert from "@/components/ui/popup-alert";
-import { redirect } from "next/navigation";
 import { imagePath } from "@/lib/utils";
 import { PublicUser } from "@/types/user";
+import userStore from "@/store/user";
 
 type Props = {
   user: PublicUser;
@@ -15,8 +15,8 @@ const UsernameBlock = ({ user }: Props) => {
     PopupAlert.show({
       message: "Do you want to logout?",
       onConfirm() {
-        localStorage.removeItem("token");
-        redirect("/login");
+        const reset = userStore.getState().reset;
+        reset();
       },
     });
   };

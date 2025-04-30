@@ -1,11 +1,18 @@
 import PopupAlert from "@/components/ui/popup-alert";
 import fetchWithAuth from "@/lib/fetch-with-auth";
 import productStore from "@/store/product";
+import { ProductStatus } from "@/types/product";
 import { ProductsGet } from "@/types/response";
 
-const getProducts = async () => {
-  const { currentPage, query, status, setProducts, setPages, rowsPerPage } =
-    productStore.getState();
+type Params = {
+  rowsPerPage: number;
+  currentPage: number;
+  query: string | undefined;
+  status: ProductStatus | undefined;
+};
+
+const getProducts = async ({ rowsPerPage, currentPage, query, status }: Params) => {
+  const { setProducts, setPages } = productStore.getState();
   const page = String(currentPage);
   const rows_per_page = String(rowsPerPage);
 

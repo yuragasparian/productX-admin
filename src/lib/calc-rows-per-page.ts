@@ -17,7 +17,7 @@ const calculateRowsPerPage = () => {
 
   const rows = Math.floor(usableHeight / tableRowHeight);
 
-  return Math.max(rows, 5); // Make sure at least 5 rows are shown
+  return Math.max(rows, 3); // Make sure at least 3 rows are shown
 };
 
 export default calculateRowsPerPage;

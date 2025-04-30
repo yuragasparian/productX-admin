@@ -11,7 +11,7 @@ const ProductsTableBody = () => {
   const rowsPerPage = useRowsPerPage();
 
   useEffect(() => {
-    getProducts();
+    getProducts({ rowsPerPage, currentPage, query, status });
   }, [currentPage, query, status, rowsPerPage]);
 
   if (products) {

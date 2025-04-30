@@ -11,7 +11,7 @@ type ProductStore = {
   setPages: (pages: number) => void;
 
   selectedProduct: Product | null;
-  setSelectedProduct: (id: number) => void;
+  setSelectedProduct: (product: Product) => void;
 
   //filters
   query: string | undefined;
@@ -24,7 +24,7 @@ type ProductStore = {
   setRowsPerPage: (rowsPerPage: number) => void;
 };
 
-const productStore = create<ProductStore>((set, get) => ({
+const productStore = create<ProductStore>((set) => ({
   products: null,
   setProducts: (products) => set({ products }),
   updateProduct: (updatedProduct) =>
@@ -45,8 +45,8 @@ const productStore = create<ProductStore>((set, get) => ({
   },
 
   selectedProduct: null,
-  setSelectedProduct: (id) => {
-    set({ selectedProduct: get().products?.find((product) => product.id == id) });
+  setSelectedProduct: (product) => {
+    set({ selectedProduct: product });
   },
 
   query: undefined,

@@ -27,7 +27,7 @@ const ModalProductInformation = () => {
 
       {activeTab !== "history" && (
         <div className="flex justify-end items-center gap-2">
-          <BtnEditProduct id={product.id} />
+          <BtnEditProduct product={product} />
           <BtnRemoveProduct id={product.id} />
         </div>
       )}

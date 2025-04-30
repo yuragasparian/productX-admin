@@ -3,18 +3,19 @@ import modalStore from "@/store/modal";
 import productStore from "@/store/product";
 import React from "react";
 import Icon from "@/components/ui/icon";
+import { Product } from "@/types/product";
 
 type Props = {
-  id: number;
+  product: Product;
 };
 
-const BtnEditProduct = ({ id }: Props) => {
+const BtnEditProduct = ({ product }: Props) => {
   const setActiveModal = modalStore.getState().setActiveModal;
   const setSelectedProduct = productStore.getState().setSelectedProduct;
 
   const handleClick = () => {
     setActiveModal("edit_product");
-    setSelectedProduct(id);
+    setSelectedProduct(product);
   };
 
   return (
