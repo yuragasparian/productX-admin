@@ -1,11 +1,11 @@
 import React, { ReactNode, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { ProductFormContext } from "./context";
-import { ProductFormFields } from "@/types/product";
+import { ProductFormValues } from "@/forms/resolvers/product-schema";
 
 type Props = {
   children: ReactNode;
-  formMethods: UseFormReturn<ProductFormFields>;
+  formMethods: UseFormReturn<ProductFormValues>;
   imageUrl?: string;
 };
 

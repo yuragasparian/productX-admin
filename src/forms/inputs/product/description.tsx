@@ -12,16 +12,7 @@ const Description = () => {
   } = useProductFormContext();
   return (
     <div className="text-left w-full">
-      <Textarea
-        placeholder="Product description"
-        {...register("description", {
-          required: "Description is required",
-          maxLength: {
-            value: 500,
-            message: "Description must be under 500 characters",
-          },
-        })}
-      />
+      <Textarea placeholder="Product description" {...register("description")} />
       {errors.description?.message && <InputError>{errors.description.message}</InputError>}
     </div>
   );

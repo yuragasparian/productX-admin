@@ -10,7 +10,7 @@ export interface SelectOption {
 
 export interface CustomSelectProps {
   options: SelectOption[];
-  value: string;
+  value: string | undefined;
   onChange: (value: string) => void;
   placeholder?: string;
   className?: string;

@@ -1,8 +1,8 @@
 import { ActiveModal } from "@/store/modal";
 import { ReactElement } from "react";
 import ProductInformation from "../product-modal-content/product-information";
-import NewProduct from "../product-modal-content/product-input/new-product";
-import EditProduct from "../product-modal-content/product-input/edit-product";
+import NewProduct from "../product-modal-content/product-forms/new-product";
+import EditProduct from "../product-modal-content/product-forms/edit-product";
 
 type ModalKey = NonNullable<ActiveModal>;
 

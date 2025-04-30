@@ -4,7 +4,7 @@ import Details from "./details";
 
 const MainInfo = () => {
   return (
-    <div className="flex justify-between gap-2">
+    <div className="flex justify-between gap-4">
       <Picture />
       <Details />
     </div>

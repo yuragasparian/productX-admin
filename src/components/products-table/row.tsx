@@ -4,7 +4,7 @@ import Badge from "@/components/ui/badge";
 import BtnProductInfo from "./product-modifiers/btn-product-info";
 import BtnEditProduct from "./product-modifiers/btn-edit-product";
 import BtnRemoveProduct from "./product-modifiers/btn-remove-product";
-import { imagePath } from "@/lib/utils";
+import { getImagePath } from "@/lib/utils";
 import React from "react";
 
 type Params = {
@@ -17,7 +17,7 @@ const ProductsTableRow = React.memo(({ product }: Params) => {
       <td className=" py-3 text-center">
         <div className="flex justify-center">
           <Image
-            src={imagePath(product.image)}
+            src={getImagePath(product.image)}
             alt={product.name}
             width={64}
             height={64}

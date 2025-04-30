@@ -16,37 +16,48 @@ export const MIN_DESCRIPTION_LENGTH = 1;
 export const MAX_DESCRIPTION_LENGTH = 500;
 
 // Category Enum
-const categoryEnum = z.enum(Object.values(ProductCategory) as [string, ...string[]]).optional();
+const categoryEnum = z.enum(Object.keys(ProductCategory) as [string, ...string[]]).optional();
 
 // Schema
 export const productSchema = z.object({
   name: z
-    .string()
+    .string({ required_error: "Name is required" })
     .min(MIN_NAME_LENGTH, `Name must be at least ${MIN_NAME_LENGTH} characters`)
     .max(MAX_NAME_LENGTH, `Name must be less than ${MAX_NAME_LENGTH} characters`),
 
   sku: z
-    .number({ invalid_type_error: "SKU must be a number" })
+    .number({
+      required_error: "SKU is required",
+      invalid_type_error: "SKU must be a number",
+    })
     .int("SKU must be an integer")
     .positive("SKU must be positive"),
 
   category: categoryEnum,
 
   price: z
-    .number({ invalid_type_error: "Price must be a number" })
+    .number({
+      required_error: "Price is required",
+      invalid_type_error: "Price must be a number",
+    })
     .min(MIN_PRICE, `Price must be greater than ${MIN_PRICE}`)
     .max(MAX_PRICE, "Price is too high"),
 
   stockQuantity: z
-    .number({ invalid_type_error: "Stock Quantity must be a number" })
+    .number({
+      required_error: "Stock Quantity is required",
+      invalid_type_error: "Stock Quantity must be a number",
+    })
     .int("Stock must be an integer")
     .nonnegative("Stock cannot be negative")
     .max(MAX_STOCK_QUANTITY, "Stock limit exceeded"),
 
   description: z
-    .string()
+    .string({ required_error: "Description is required" })
     .min(MIN_DESCRIPTION_LENGTH, "Description is required")
     .max(MAX_DESCRIPTION_LENGTH, `Description must be under ${MAX_DESCRIPTION_LENGTH} characters`),
+
+  image: z.instanceof(FileList),
 });
 
 export type ProductFormValues = z.infer<typeof productSchema>;

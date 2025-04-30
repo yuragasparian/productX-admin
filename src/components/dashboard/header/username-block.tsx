@@ -2,7 +2,7 @@ import Image from "next/image";
 import Button from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import PopupAlert from "@/components/ui/popup-alert";
-import { imagePath } from "@/lib/utils";
+import { getImagePath } from "@/lib/utils";
 import { PublicUser } from "@/types/user";
 import userStore from "@/store/user";
 
@@ -27,7 +27,7 @@ const UsernameBlock = ({ user }: Props) => {
         className="object-cover rounded-full aspect-square"
         width={32}
         height={32}
-        src={imagePath(user.image)}
+        src={getImagePath(user.image)}
         alt="profile image"
       />
       <span className="p4">{user.userName}</span>

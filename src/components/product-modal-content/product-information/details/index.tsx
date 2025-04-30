@@ -1,5 +1,5 @@
 import Badge from "@/components/ui/badge";
-import { imagePath } from "@/lib/utils";
+import { getImagePath } from "@/lib/utils";
 import productStore from "@/store/product";
 import Image from "next/image";
 
@@ -18,7 +18,7 @@ const ProductInfoDetails = () => {
     <>
       <div className="flex gap-5">
         <Image
-          src={imagePath(product.image)}
+          src={getImagePath(product.image)}
           alt={`${product.name} image`}
           width={188}
           height={188}

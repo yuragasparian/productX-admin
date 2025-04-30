@@ -21,4 +21,4 @@ export function convertDateFormat(date: Date) {
   return formattedDate;
 }
 
-export const imagePath = (imageName: string) => `${env.SERVER_URL}/${imageName}`;
+export const getImagePath = (imageName: string) => `${env.SERVER_URL}/${imageName}`;

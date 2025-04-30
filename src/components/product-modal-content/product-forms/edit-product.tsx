@@ -1,16 +1,17 @@
 import ProductInput from "@/forms/inputs/product";
 import ProductFormProvider from "@/forms/inputs/product/context/provider";
+import { ProductFormValues, productSchema } from "@/forms/resolvers/product-schema";
 import { useImagePreview } from "@/hooks/use-image-preview";
-import { imagePath } from "@/lib/utils";
+import { getImagePath } from "@/lib/utils";
 import productStore from "@/store/product";
-import { ProductFormFields } from "@/types/product";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 const EditProduct = () => {
   const selectedProduct = productStore.getState().selectedProduct!;
-  const currentImageUrl = imagePath(selectedProduct.image);
+  const currentImageUrl = getImagePath(selectedProduct.image);
 
-  const formMethods = useForm<ProductFormFields>({
+  const formMethods = useForm<ProductFormValues>({
     //image doesnt take default value, so we set it separately using context
     defaultValues: {
       name: selectedProduct?.name,
@@ -21,6 +22,7 @@ const EditProduct = () => {
       description: selectedProduct?.description,
     },
     mode: "onBlur",
+    resolver: zodResolver(productSchema),
   });
   const newImage = formMethods.watch("image")?.[0];
   const previewUrl = useImagePreview(newImage);
