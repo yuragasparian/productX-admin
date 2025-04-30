@@ -1,11 +1,9 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { Icon } from '@/components/ui/icon';
+import { Icon } from "@/components/ui/icon";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rightIcon?: string;
 }
 
@@ -17,7 +15,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={type}
           className={cn(
             "flex w-full rounded-xl border border-dark bg-transparent px-4 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black-200 focus-visible:outline-none focus-visible:ring-1",
-            className
+            className,
           )}
           ref={ref}
           {...props}
@@ -29,8 +27,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 export { Input };
-Input.displayName = "Input"
+Input.displayName = "Input";

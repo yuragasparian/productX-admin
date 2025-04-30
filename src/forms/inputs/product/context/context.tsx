@@ -1,6 +1,13 @@
+"use client";
+
 import { ProductFormFields } from "@/types/product";
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
 import { UseFormReturn } from "react-hook-form";
+
+// enum ProductActionSteps {
+//   "main-info" = "main-info",
+//   "description" = "description",
+// }
 
 interface ProductFormContextType {
   step: 1 | 2;

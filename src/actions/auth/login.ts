@@ -9,7 +9,8 @@ export default async function login(credentials: Login) {
     body: JSON.stringify(credentials),
   });
   if (!data) {
-    return PopupAlert.show({ message: meta.error?.message });
+    PopupAlert.show({ message: meta.error?.message });
+    return;
   }
   return data.item;
 }

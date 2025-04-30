@@ -1,15 +1,16 @@
-import userStore from "@/store/user";
 import Image from "next/image";
 import Button from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import PopupAlert from "@/components/ui/popup-alert";
 import { redirect } from "next/navigation";
 import { imagePath } from "@/lib/utils";
+import { PublicUser } from "@/types/user";
 
-const UsernameBlock = () => {
-  const user = userStore((state) => state.user);
-  if (!user) return null;
+type Props = {
+  user: PublicUser;
+};
 
+const UsernameBlock = ({ user }: Props) => {
   const onLogout = () => {
     PopupAlert.show({
       message: "Do you want to logout?",
@@ -23,7 +24,7 @@ const UsernameBlock = () => {
   return (
     <div className="flex justify-evenly rounded-[8px] items-center gap-3 bg-white py-2 px-4">
       <Image
-        className="object-cover rounded-full "
+        className="object-cover rounded-full aspect-square"
         width={32}
         height={32}
         src={imagePath(user.image)}

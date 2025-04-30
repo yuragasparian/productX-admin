@@ -3,13 +3,16 @@ import ProductsTableRow from "./row";
 import productStore from "@/store/product";
 import { useEffect } from "react";
 import EmptyTableBody from "./empty-body";
+import { useRowsPerPage } from "@/hooks/use-rows-per-page";
 
 const ProductsTableBody = () => {
   const products = productStore((state) => state.products);
   const { currentPage, query, status } = productStore((state) => state);
+  const rowsPerPage = useRowsPerPage();
+
   useEffect(() => {
     getProducts();
-  }, [currentPage, query, status]);
+  }, [currentPage, query, status, rowsPerPage]);
 
   if (products) {
     return products.length > 0 ? (

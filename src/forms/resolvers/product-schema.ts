@@ -5,6 +5,8 @@ import { ProductCategory } from "@/types/product";
 
 const categoryEnum = z.enum(Object.values(ProductCategory) as [string, ...string[]]).optional();
 
+const MAX_STOCK_QAUNTITY = 10_000;
+
 export const productSchema = z.object({
   name: z
     .string()
@@ -27,7 +29,7 @@ export const productSchema = z.object({
     .number({ invalid_type_error: "Stock Quantity must be a number" })
     .int("Stock must be an integer")
     .nonnegative("Stock cannot be negative")
-    .max(10_000, "Stock limit exceeded"),
+    .max(MAX_STOCK_QAUNTITY, "Stock limit exceeded"),
 
   description: z
     .string()
