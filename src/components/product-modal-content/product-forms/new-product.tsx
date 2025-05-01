@@ -1,6 +1,7 @@
 import ProductInput from "@/forms/inputs/product";
 import ProductFormProvider from "@/forms/inputs/product/context/provider";
 import { ProductFormValues, productSchema } from "@/forms/resolvers/product-schema";
+import useNewSubmit from "@/forms/submit-handlers/product/new";
 import { useImagePreview } from "@/hooks/use-image-preview";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
@@ -15,10 +16,13 @@ const NewProduct = () => {
   const newImage = formMethods.watch("image")?.[0];
   const previewUrl = useImagePreview(newImage);
 
+  const submit = useNewSubmit;
+
   return (
     <ProductFormProvider
       formMethods={formMethods}
       {...(previewUrl ? { imageUrl: previewUrl } : {})}
+      submit={submit}
     >
       <ProductInput />
     </ProductFormProvider>

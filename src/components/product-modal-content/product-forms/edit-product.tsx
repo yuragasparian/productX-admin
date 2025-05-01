@@ -1,6 +1,7 @@
 import ProductInput from "@/forms/inputs/product";
 import ProductFormProvider from "@/forms/inputs/product/context/provider";
 import { ProductFormValues, productSchema } from "@/forms/resolvers/product-schema";
+import useEditSubmit from "@/forms/submit-handlers/product/edit";
 import { useImagePreview } from "@/hooks/use-image-preview";
 import { getImagePath } from "@/lib/utils";
 import productStore from "@/store/product";
@@ -27,8 +28,14 @@ const EditProduct = () => {
   const newImage = formMethods.watch("image")?.[0];
   const previewUrl = useImagePreview(newImage);
 
+  const submit = useEditSubmit;
+
   return (
-    <ProductFormProvider formMethods={formMethods} imageUrl={previewUrl || currentImageUrl}>
+    <ProductFormProvider
+      formMethods={formMethods}
+      submit={submit}
+      imageUrl={previewUrl || currentImageUrl}
+    >
       <ProductInput />
     </ProductFormProvider>
   );
