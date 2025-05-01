@@ -1,20 +1,24 @@
 import Button from "@/components/ui/button";
 import modalStore from "@/store/modal";
 import { useProductFormContext } from "../context/context";
+import { FormStep } from "@/types/forms";
 
 const CancelButton = () => {
   const setActiveModal = modalStore.getState().setActiveModal;
   const { step, setStep } = useProductFormContext();
-  const btnText = {
-    1: "Cancel",
-    2: "Back",
+
+  const btnText: Record<FormStep, string> = {
+    "main-info": "Cancel",
+    description: "Back",
   };
-  const onClick = {
-    1: () => setActiveModal(null),
-    2: () => setStep(1),
+
+  const onClick: Record<FormStep, () => void> = {
+    "main-info": () => setActiveModal(null),
+    description: () => setStep("main-info"),
   };
+
   return (
-    <Button onClick={onClick[step]} className="w-full" type="button">
+    <Button type="button" className="w-full" onClick={onClick[step]}>
       {btnText[step]}
     </Button>
   );

@@ -1,17 +1,14 @@
 "use client";
 
 import { ProductFormValues } from "@/forms/resolvers/product-schema";
+import { FormStep } from "@/types/forms";
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
 import { UseFormReturn } from "react-hook-form";
 
-// enum ProductActionSteps {
-//   "main-info" = "main-info",
-//   "description" = "description",
-// }
-
 interface ProductFormContextType {
-  step: 1 | 2;
-  setStep: Dispatch<SetStateAction<1 | 2>>;
+  step: FormStep;
+  setStep: Dispatch<SetStateAction<FormStep>>;
+  submit: () => (values: ProductFormValues) => Promise<void>;
   formMethods: UseFormReturn<ProductFormValues>;
   imageUrl?: string;
 }

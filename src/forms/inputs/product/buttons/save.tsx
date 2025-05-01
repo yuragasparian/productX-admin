@@ -1,5 +1,6 @@
 import Button from "@/components/ui/button";
 import { useProductFormContext } from "../context/context";
+import { FormStep } from "@/types/forms";
 
 const SaveButton = () => {
   const {
@@ -7,13 +8,13 @@ const SaveButton = () => {
     setStep,
     formMethods: { handleSubmit },
   } = useProductFormContext();
-  const btnText = {
-    1: "Next",
-    2: "Save",
+  const btnText: Record<FormStep, string> = {
+    "main-info": "Next",
+    description: "Save",
   };
-  const onClick = {
-    1: handleSubmit(() => setStep(2)),
-    2: () => {},
+  const onClick: Record<FormStep, () => void> = {
+    "main-info": handleSubmit(() => setStep("description")),
+    description: () => {},
   };
   return (
     <Button form="product-form" variant="secondary" className="w-full" onClick={onClick[step]}>
