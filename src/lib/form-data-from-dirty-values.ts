@@ -1,6 +1,6 @@
-import { ProductFormFields } from "@/types/product";
+import { ProductFormValues } from "@/forms/resolvers/product-schema";
 
-function formDataFromDirtyValues<T extends ProductFormFields>(
+function formDataFromDirtyValues<T extends ProductFormValues>(
   allValues: T,
   dirtyFields?: Partial<Record<keyof T, boolean | undefined>>,
 ): FormData {

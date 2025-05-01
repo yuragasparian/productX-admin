@@ -1,9 +1,9 @@
 import formDataFromDirtyValues from "@/lib/form-data-from-dirty-values";
-import { ProductFormFields } from "@/types/product";
 import addProduct from "@/actions/products/add-product";
+import { ProductFormValues } from "@/forms/resolvers/product-schema";
 
 const useNewSubmit = () => {
-  const submit = async (values: ProductFormFields) => {
+  const submit = async (values: ProductFormValues) => {
     const formData = formDataFromDirtyValues(values);
     await addProduct(formData);
   };

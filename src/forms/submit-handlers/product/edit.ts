@@ -3,7 +3,7 @@ import editProduct from "@/actions/products/edit-product";
 import formDataFromDirtyValues from "@/lib/form-data-from-dirty-values";
 import productStore from "@/store/product";
 import PopupAlert from "@/components/ui/popup-alert";
-import { ProductFormFields } from "@/types/product";
+import { ProductFormValues } from "@/forms/resolvers/product-schema";
 
 const useEditSubmit = () => {
   const {
@@ -12,7 +12,7 @@ const useEditSubmit = () => {
     },
   } = useProductFormContext();
 
-  const submit = async (values: ProductFormFields) => {
+  const submit = async (values: ProductFormValues) => {
     const productId = productStore.getState().selectedProduct!.id;
     if (isDirty) {
       const formData = formDataFromDirtyValues(values, dirtyFields);

@@ -16,7 +16,7 @@ export const MIN_DESCRIPTION_LENGTH = 1;
 export const MAX_DESCRIPTION_LENGTH = 500;
 
 // Category Enum
-const categoryEnum = z.enum(Object.keys(ProductCategory) as [string, ...string[]]).optional();
+const categoryEnum = z.enum(Object.keys(ProductCategory) as [string, ...string[]]);
 
 // Schema
 export const productSchema = z.object({
@@ -55,7 +55,8 @@ export const productSchema = z.object({
   description: z
     .string({ required_error: "Description is required" })
     .min(MIN_DESCRIPTION_LENGTH, "Description is required")
-    .max(MAX_DESCRIPTION_LENGTH, `Description must be under ${MAX_DESCRIPTION_LENGTH} characters`),
+    .max(MAX_DESCRIPTION_LENGTH, `Description must be under ${MAX_DESCRIPTION_LENGTH} characters`)
+    .optional(),
 
   image: z.instanceof(FileList),
 });

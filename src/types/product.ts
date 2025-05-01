@@ -22,13 +22,6 @@ export type ProductHistory = {
   product?: Product;
 };
 
-export type ProductFormFields = Pick<
-  Product,
-  "name" | "sku" | "category" | "price" | "stockQuantity" | "description"
-> & {
-  image: FileList | null;
-};
-
 export enum ProductCategory {
   Electronics = "Electronics",
   Clothing = "Clothing",

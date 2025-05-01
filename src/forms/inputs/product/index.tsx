@@ -6,11 +6,11 @@ import CancelButton from "./buttons/cancel";
 import useEditSubmit from "@/forms/submit-handlers/product/edit";
 import modalStore, { ActiveModal } from "@/store/modal";
 import useNewSubmit from "@/forms/submit-handlers/product/new";
-import { ProductFormFields } from "@/types/product";
+import { ProductFormValues } from "@/forms/resolvers/product-schema";
 
 type FormSubmitter = Record<
   Exclude<ActiveModal, "product_info" | null>,
-  (values: ProductFormFields) => Promise<void>
+  (values: ProductFormValues) => Promise<void>
 >;
 
 const ProductInput = () => {
