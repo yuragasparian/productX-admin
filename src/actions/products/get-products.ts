@@ -5,10 +5,10 @@ import { ProductStatus } from "@/types/product";
 import { ProductsGet } from "@/types/response";
 
 type Params = {
-  rowsPerPage: number;
-  currentPage: number;
-  query: string | undefined;
-  status: ProductStatus | undefined;
+  rowsPerPage?: number;
+  currentPage?: number;
+  query?: string;
+  status?: ProductStatus;
 };
 
 const getProducts = async ({ rowsPerPage, currentPage, query, status }: Params) => {

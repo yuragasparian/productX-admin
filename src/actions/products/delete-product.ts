@@ -3,6 +3,7 @@ import { toast } from "@/components/ui/toast";
 import fetchWithAuth from "@/lib/fetch-with-auth";
 import modalStore from "@/store/modal";
 import { ProductDelete } from "@/types/response";
+import getProducts from "./get-products";
 
 export const deleteProduct = async (productId: number) => {
   const { meta, data } = await fetchWithAuth<ProductDelete>(`/products/${productId}`, {
@@ -13,5 +14,6 @@ export const deleteProduct = async (productId: number) => {
   }
   const { setActiveModal, activeModal } = modalStore.getState();
   toast("Product removed successfully!", { type: "success" });
+  await getProducts({});
   if (activeModal) setActiveModal(null);
 };
