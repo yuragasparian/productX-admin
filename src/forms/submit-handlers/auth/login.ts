@@ -1,7 +1,7 @@
 "use client";
 import login from "@/actions/auth/login";
+import { Login } from "@/forms/resolvers/login-schema";
 import userStore from "@/store/user";
-import { Login } from "@/types/user";
 import { useRouter } from "next/navigation";
 
 const useLoginSubmit = () => {

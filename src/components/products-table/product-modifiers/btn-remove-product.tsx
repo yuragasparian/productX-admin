@@ -2,7 +2,7 @@ import { deleteProduct } from "@/actions/products/delete-product";
 import Button from "@/components/ui/button";
 import PopupAlert from "@/components/ui/popup-alert";
 import Icon from "@/components/ui/icon";
-import getProducts from "@/actions/products/get-products";
+import productStore from "@/store/product";
 
 type Props = {
   id: number;
@@ -13,8 +13,9 @@ const BtnRemoveProduct = ({ id }: Props) => {
     PopupAlert.show({
       message: "Do you want to remove the product?",
       async onConfirm() {
+        const setCurrentPage = productStore.getState().setCurrentPage;
         await deleteProduct(id);
-        await getProducts();
+        setCurrentPage(1);
       },
     });
   };
