@@ -23,7 +23,7 @@ const fetchWithAuth = async <T>(
 
   try {
     const response = await fetch(env.SERVER_URL + endpoint, { ...options, headers });
-    return await response.json();
+    return response.json();
   } catch {
     return {
       meta: {

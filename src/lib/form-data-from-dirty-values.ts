@@ -1,6 +1,4 @@
-import { ProductFormValues } from "@/forms/resolvers/product-schema";
-
-function formDataFromDirtyValues<T extends ProductFormValues>(
+function formDataFromDirtyValues<T>(
   allValues: T,
   dirtyFields?: Partial<Record<keyof T, boolean | undefined>>,
 ): FormData {

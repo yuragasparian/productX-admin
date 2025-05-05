@@ -11,9 +11,7 @@ export type User = {
 
 export type PublicUser = Omit<User, "password">;
 
-export type Login = Pick<User, "userName" | "password">;
-
 export enum Role {
-  Admin,
-  Moderator,
+  Admin = "Admin",
+  Moderator = "Moderator",
 }

@@ -1,9 +1,13 @@
+import Dialogue from "@/components/ui/dialogue";
+import RegisterForm from "@/forms/inputs/auth/register";
 import React from "react";
 
-type Props = {};
-
-const page = (props: Props) => {
-  return <div>page</div>;
+const page = () => {
+  return (
+    <Dialogue size="mediumLarge">
+      <RegisterForm />
+    </Dialogue>
+  );
 };
 
 export default page;

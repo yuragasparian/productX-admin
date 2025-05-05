@@ -25,7 +25,7 @@ const ProductsTableRow = React.memo(({ product }: Params) => {
           />
         </div>
       </td>
-      <td className=" py-3 text-left">{product.name}</td>
+      <td className=" py-3 text-left wrap-break-word max-w-40">{product.name}</td>
       <td className=" py-3">{product.sku}</td>
       <td className=" py-3">{product.category}</td>
       <td className=" py-3">{product.price}$</td>

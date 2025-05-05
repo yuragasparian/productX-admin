@@ -1,6 +1,5 @@
-import { Input } from "@/components/ui/input";
 import { useProductFormContext } from "../context/context";
-import ImageUploadIcon from "@/components/ui/image-upload-icon";
+import ImageInput from "@/components/ui/image-input";
 
 const Picture = () => {
   const {
@@ -9,18 +8,12 @@ const Picture = () => {
   } = useProductFormContext();
 
   return (
-    <div className="relative">
-      <Input
-        {...register("image")}
-        className="size-67 bg-cover bg-center cursor-pointer text-transparent"
-        type="file"
-        multiple={false}
-        style={{
-          backgroundImage: imageUrl ? `url(${imageUrl})` : `none`,
-        }}
-      />
-      <ImageUploadIcon imageExists={!!imageUrl} />
-    </div>
+    <ImageInput
+      registerProps={register("image")}
+      placeholder="Product image"
+      imageUrl={imageUrl}
+      className="size-67"
+    />
   );
 };
 

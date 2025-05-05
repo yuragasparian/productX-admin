@@ -4,9 +4,10 @@ import React from "react";
 
 type Props = {
   imageExists: boolean;
+  placeholder: string;
 };
 
-const ImageUploadIcon = ({ imageExists }: Props) => {
+const ImageUploadIcon = ({ imageExists, placeholder }: Props) => {
   const iconClass = imageExists ? "size-8" : "size-2/3";
   return (
     <div
@@ -19,7 +20,7 @@ const ImageUploadIcon = ({ imageExists }: Props) => {
       {!imageExists && (
         <div className="flex flex-col items-center gap-3">
           <Icon name="add-product" size={40} />
-          <p className="text-black/20">Product Image</p>
+          <p className="text-black/20">{placeholder}</p>
         </div>
       )}
     </div>

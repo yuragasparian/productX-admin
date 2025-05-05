@@ -1,9 +1,9 @@
 import { Input } from "@/components/ui/input";
 import InputError from "@/components/ui/input-error";
 import { Select } from "@/components/ui/select";
-import { ProductCategory } from "@/types/product";
 import { Controller } from "react-hook-form";
 import { useProductFormContext } from "../context/context";
+import { categoryOptions } from "@/components/configs/select";
 
 const Details = () => {
   const {
@@ -11,11 +11,6 @@ const Details = () => {
     control,
     formState: { errors },
   } = useProductFormContext().formMethods;
-
-  const categoryOptions = Object.keys(ProductCategory).map((key) => ({
-    label: ProductCategory[key as keyof typeof ProductCategory] as string,
-    value: key as string,
-  }));
 
   return (
     <div className="flex flex-col justify-between">

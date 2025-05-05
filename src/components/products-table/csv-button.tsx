@@ -5,14 +5,16 @@ import getCSV from "@/actions/products/get-csv";
 const DownloadCSVButton = () => {
   const handleDownload = async () => {
     const blob = await getCSV();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "products.csv";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    window.URL.revokeObjectURL(url);
+    if (blob) {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "products.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    }
   };
 
   return (
