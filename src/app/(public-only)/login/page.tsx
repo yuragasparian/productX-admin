@@ -1,4 +1,3 @@
-import type { Login } from "@/types/user";
 import Dialogue from "@/components/ui/dialogue";
 import LoginForm from "@/forms/inputs/auth/login";
 
