@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 type TabId = "details" | "description" | "history";
 
@@ -26,11 +26,7 @@ const TabPagination = ({ activeTab, setActiveTab }: Params) => {
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={`cursor-pointer w-1/3 px-4 py-2 rounded-t-md transition-colors duration-200
-              ${
-                activeTab === tab.id
-                  ? "border-b-1 p4 border-medium "
-                  : "p3 hover:text-medium"
-              }`}
+              ${activeTab === tab.id ? "border-b-1 p4 border-medium " : "p3 hover:text-medium"}`}
         >
           {tab.label}
         </button>
