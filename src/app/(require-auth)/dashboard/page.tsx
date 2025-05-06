@@ -1,23 +1,11 @@
 "use client";
-
-import getUserInfo from "@/actions/auth/get-user-info";
-import { useEffect } from "react";
-import userStore from "@/store/user";
 import ProductsTableHead from "@/components/products-table/head";
 import ProductsTableBody from "@/components/products-table/body";
 import ProductModal from "@/components/product-modal-content";
+import useInitiUserInfo from "@/hooks/use-init-user-info";
 
 const Dashboard = () => {
-  const setUser = userStore.getState().setUser;
-  const user = userStore((state) => state.user);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const userInfo = await getUserInfo();
-      setUser(userInfo);
-    };
-    getUser();
-  }, [setUser]);
+  const user = useInitiUserInfo();
 
   if (!user) return null;
 
