@@ -14,17 +14,17 @@ const ProductsTableBody = () => {
     getProducts({ rowsPerPage, currentPage, query, status });
   }, [currentPage, query, status, rowsPerPage]);
 
-  if (products) {
-    return products.length > 0 ? (
-      <tbody className="border-b border-gray-100">
-        {products.map((product) => {
-          return <ProductsTableRow key={product.id} product={product} />;
-        })}
-      </tbody>
-    ) : (
-      <EmptyTableBody />
-    );
-  }
+  if (!products) return null;
+
+  return products.length > 0 ? (
+    <tbody className="border-b border-gray-100">
+      {products.map((product) => {
+        return <ProductsTableRow key={product.id} product={product} />;
+      })}
+    </tbody>
+  ) : (
+    <EmptyTableBody />
+  );
 };
 
 export default ProductsTableBody;
